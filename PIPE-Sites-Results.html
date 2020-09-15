@@ -1,0 +1,1266 @@
+<!doctype html>
+<html><head><title>Research Results and Discussion Comprehensive Lists of various Algorithms (with performance results) for binding-site prediction</title><meta charset="UTF-8"><link href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700,700italic|Roboto:400,700,700italic,400italic" rel="stylesheet" type="text/css"><style>/*
+ * Copyright 2014 Quip
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may obtain
+ * a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ */
+
+body {
+    font-size: 15px;
+    color: #333;
+    background: white;
+    padding: 60px 95px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern";
+    font-kerning: normal;
+    -moz-font-feature-settings: "kern";
+    -webkit-font-feature-settings: "kern";
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+th {
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    margin: 0;
+    margin-top: 1.25em;
+    margin-bottom: 0.75em;
+}
+
+h1 {
+    font-size: 35px;
+    line-height: 42px;
+}
+
+h1:first-child {
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 18px;
+    line-height: 22px;
+}
+
+h3 {
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.capitalize-h3 h3 {
+    text-transform: uppercase;
+}
+
+/* Body text */
+body,
+p,
+ul,
+ol,
+td {
+    font-family: "Crimson Text", serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+blockquote,
+q {
+    display: block;
+    margin: 1em 0;
+    font-style: italic;
+}
+
+blockquote a,
+q a {
+    text-decoration: underline;
+}
+
+blockquote {
+    padding-left: 10px;
+    border-left: 4px solid #a6a6a6;
+}
+
+q {
+    color: #a6a6a6;
+    line-height: 40px;
+    font-size: 24px;
+    text-align: center;
+    quotes: none;
+}
+
+q a {
+    color: #a6a6a6;
+}
+
+code,
+pre {
+    font-family: Consolas, "Liberation Mono", Menlo, "Courier Prime Web",
+        Courier, monospace;
+    background: #f2f2f2;
+}
+
+code {
+    padding: 1px;
+    margin: 0 -1px;
+    border-radius: 3px;
+}
+
+pre {
+    display: block;
+    line-height: 20px;
+    text-shadow: 0 1px white;
+    padding: 5px 5px 5px 30px;
+    white-space: nowrap;
+    position: relative;
+    margin: 1em 0;
+}
+
+pre:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15px;
+    border-left: solid 1px #dadada;
+}
+
+/* Lists */
+div[data-section-style="5"],
+div[data-section-style="6"],
+div[data-section-style="7"] {
+    margin: 12px 0;
+}
+
+ul {
+    padding: 0 0 0 40px;
+}
+
+ul li {
+    margin-bottom: 0.4em;
+}
+
+/* Bulleted list */
+div[data-section-style="5"] ul {
+    list-style-type: disc;
+}
+div[data-section-style="5"] ul ul {
+    list-style-type: circle;
+}
+div[data-section-style="5"] ul ul ul {
+    list-style-type: square;
+}
+div[data-section-style="5"] ul ul ul ul {
+    list-style-type: disc;
+}
+div[data-section-style="5"] ul ul ul ul ul {
+    list-style-type: circle;
+}
+div[data-section-style="5"] ul ul ul ul ul ul {
+    list-style-type: square;
+}
+
+/* Numbered list */
+div[data-section-style="6"] ul {
+    list-style-type: decimal;
+}
+div[data-section-style="6"] ul ul {
+    list-style-type: lower-alpha;
+}
+div[data-section-style="6"] ul ul ul {
+    list-style-type: lower-roman;
+}
+div[data-section-style="6"] ul ul ul ul {
+    list-style-type: decimal;
+}
+div[data-section-style="6"] ul ul ul ul ul {
+    list-style-type: lower-alpha;
+}
+div[data-section-style="6"] ul ul ul ul ul ul {
+    list-style-type: lower-roman;
+}
+
+/* Checklist */
+div[data-section-style="7"] ul {
+    list-style-type: none;
+}
+
+div[data-section-style="7"] ul li:before {
+    content: "\2610";
+    position: absolute;
+    display: inline;
+    margin-right: 1.2em;
+    margin-left: -1.2em;
+}
+
+div[data-section-style="7"] ul li.parent:before {
+    content: "";
+}
+
+div[data-section-style="7"] ul li.checked {
+    text-decoration: line-through;
+}
+
+div[data-section-style="7"] ul li.checked:before {
+    content: "\2611";
+    text-decoration: none;
+}
+
+/* Tables */
+div[data-section-style="8"] {
+    margin: 12px 0;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: separate;
+    border: solid 1px #bbb;
+    table-layout: fixed;
+    position: relative;
+}
+
+table th,
+table td {
+    padding: 2px 2px 0;
+    min-width: 1.5em;
+    word-wrap: break-word;
+}
+
+table th {
+    border-bottom: 1px solid #c7cbd1;
+    background: #f2f2f2;
+    font-weight: bold;
+    vertical-align: bottom;
+    color: #3a4449;
+    text-align: center;
+}
+
+table td {
+    padding-top: 0;
+    border-left: 1px solid #c7cbd1;
+    border-top: 1px solid #c7cbd1;
+    vertical-align: top;
+}
+
+table td.bold {
+    font-weight: bold;
+}
+
+table td.italic {
+    font-style: italic;
+}
+
+table td.underline {
+    text-decoration: underline;
+}
+
+table td.strikethrough {
+    text-decoration: line-through;
+}
+
+table td.underline.strikethrough {
+    text-decoration: underline line-through;
+}
+
+table td:first-child {
+    border-left: hidden;
+}
+
+table tr:first-child td {
+    border-top: hidden;
+}
+
+/* Images */
+div[data-section-style="11"] {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div[data-section-style="11"][data-section-float="0"] {
+    clear: both;
+    text-align: center;
+}
+
+div[data-section-style="11"][data-section-float="1"] {
+    float: left;
+    clear: left;
+    margin-right: 20px;
+}
+
+div[data-section-style="11"][data-section-float="2"] {
+    float: right;
+    clear: right;
+    margin-left: 20px;
+}
+
+div[data-section-style="11"] img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+div[data-section-style="11"].show-border {
+    outline: 1px solid @standardShadowColor;
+    box-shadow: 0 1px 4px 0 @secondaryShadowColor;
+}
+
+hr {
+    width: 70px;
+    margin: 20px auto;
+}
+
+/* Apps */
+div[data-section-style="19"].placeholder {
+    margin: 0.8em auto;
+    padding: 4px 0;
+    display: block;
+    color: #3d87f5;
+    text-align: center;
+    border: 1px solid rgba(41, 182, 242, 0.2);
+    border-radius: 3px;
+    background: #e9f8fe;
+    font-family: Roboto, sans-serif;
+}
+
+div[data-section-style="19"].first-party-element {
+    margin-bottom: 10px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+div[data-section-style="19"].first-party-element.kanban {
+    background-image: url("https://quip-cdn.com/nK0hSyhsb4jrLIL2s5Ma-g");
+    height: 166px;
+}
+
+div[data-section-style="19"].first-party-element.calendar {
+    background-image: url("https://quip-cdn.com/OYujqLny03RILxcLIiyERg");
+    height: 244px;
+}
+
+div[data-section-style="19"].first-party-element.poll {
+    background-image: url("https://quip-cdn.com/fbIiFrcKGv__4NB7CBfxoA");
+    height: 116px;
+}
+
+div[data-section-style="19"].first-party-element.countdown {
+    background-image: url("https://quip-cdn.com/3bPhykD2dBei9sSjCWteTQ");
+    height: 96px;
+}
+
+div[data-section-style="19"].first-party-element.process_bar {
+    background-image: url("https://quip-cdn.com/ybQlHnHEIIBLog5rZmYs_w");
+    height: 36px;
+}
+
+div[data-section-style="19"].first-party-element.project_tracker {
+    background-image: url("https://quip-cdn.com/OFQU087b4Mxzz1ZaHwtjXA");
+    height: 164px;
+}
+
+div[data-section-style="19"] img {
+    margin: 0.5em;
+}
+
+div[data-section-style="19"] img.masked-image {
+    margin: 0;
+    transform-origin: top left;
+}
+
+div[data-section-style="19"] .image-mask {
+    position: relative;
+    overflow: hidden;
+}
+/*
+ * Copyright 2019 Quip
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may obtain
+ * a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ */
+
+body {
+    counter-reset: indent0 indent1 indent2 indent3 indent4 indent5 indent6
+        indent7 indent8;
+}
+
+/* Numbered list */
+div[data-section-style="6"] {
+    counter-reset: indent0 indent1 indent2 indent3 indent4 indent5 indent6
+        indent7 indent8;
+}
+div[data-section-style="6"].list-numbering-continue {
+    counter-reset: none;
+}
+div[data-section-style="6"].list-numbering-restart-at {
+    counter-reset: indent0 var(--indent0) indent1 indent2 indent3 indent4
+        indent5 indent6 indent7 indent8;
+}
+div[data-section-style="6"] ul {
+    /* indent0 is not reset since it is shared across the div elements */
+    list-style-type: none !important;
+}
+div[data-section-style="6"] ul ul {
+    counter-reset: indent1;
+}
+div[data-section-style="6"] ul ul ul {
+    counter-reset: indent2;
+}
+div[data-section-style="6"] ul ul ul ul {
+    counter-reset: indent3;
+}
+div[data-section-style="6"] ul ul ul ul ul {
+    counter-reset: indent4;
+}
+div[data-section-style="6"] ul ul ul ul ul ul {
+    counter-reset: indent5;
+}
+div[data-section-style="6"] ul li {
+    counter-increment: indent0;
+}
+div[data-section-style="6"] ul ul li {
+    counter-increment: indent1;
+}
+div[data-section-style="6"] ul ul ul li {
+    counter-increment: indent2;
+}
+div[data-section-style="6"] ul ul ul ul li {
+    counter-increment: indent3;
+}
+div[data-section-style="6"] ul ul ul ul ul li {
+    counter-increment: indent4;
+}
+div[data-section-style="6"] ul ul ul ul ul ul li {
+    counter-increment: indent5;
+}
+div[data-section-style="6"] ul li:before {
+    content: counter(indent0, decimal) ". ";
+}
+div[data-section-style="6"] ul ul li:before {
+    content: counter(indent1, lower-alpha) ". ";
+}
+div[data-section-style="6"] ul ul ul li:before {
+    content: counter(indent2, lower-roman) ". ";
+}
+div[data-section-style="6"] ul ul ul ul li:before {
+    content: counter(indent3, decimal) ". ";
+}
+div[data-section-style="6"] ul ul ul ul ul li:before {
+    content: counter(indent4, lower-alpha) ". ";
+}
+div[data-section-style="6"] ul ul ul ul ul ul li:before {
+    content: counter(indent5, lower-roman) ". ";
+}
+</style></head><body><h1 id='TSIACAbupvh'>Research Results and Discussion Comprehensive Lists of various Algorithms (with performance results) for binding-site prediction </h1>
+
+<h1 id='TSIACAI6WoA'>1. Running PIPE on Protein-Dataset (homo sapiens)</h1>
+
+Latest Homo sapiens protein sequences from <b>Uniprot</b><br/>
+
+protein-pairs (only physical interactions) from <b>BioGrid</b><br/>
+
+<h2 id='TSIACAKRrP1'>1.1. Re-Running PIPE code (generating landscapes)</h2>
+
+<h3 id='TSIACAHY2sw'>1.1.1. Re-generating simProt files</h3>
+
+A <code>simProt</code> file for a protein sequence represents all interactions of this protein to all other proteins. This is directly loaded in memory while calculating the landscape to significantly reduce the run time of pipe for each input-pair<br/>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAftNob'><li id='TSIACAqMstS' class='parent' value='1'><b>lab/Graham:</b> 8 CPUs
+
+<br/></li><ul><li id='TSIACAGXOXT' class=''>~16 hrs runtime
+
+<br/></li></ul><li id='TSIACAiKkjf' class='parent'><b>AWS:</b> 196 CPUs (with 4GB memory each CPUs)
+
+<br/></li><ul><li id='TSIACAmhYfk' class=''>~10 minutes
+
+<br/></li></ul><li id='TSIACAqosiO' class=''><b>Output: </b>one <code> .db </code> file per protein sequence
+
+<br/></li></ul></div><h3 id='TSIACAj9h0u'>1.1.2. Re-generating Landscapes</h3>
+
+Once the <code> simProt </code> files are generated, we run the pipe algo to generate landscapes for each input pair<br/>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAQLJgQ'><li id='TSIACA3GMoo' class='parent' value='1'><b>lab/Graham:</b>  8 CPUs
+
+<br/></li><ul><li id='TSIACAzVNz5' class=''>~30 minutes
+
+<br/></li></ul><li id='TSIACAzXuBk' class='parent'><b>AWS: </b>on 196 CPUs (with 4GB memory each CPUs)
+
+<br/></li><ul><li id='TSIACAjiN7f' class=''>~1 minute
+
+<br/></li></ul><li id='TSIACAcmr3u' class=''><b>Output : </b>one<b> </b>landscape (<code> .mat </code> file) for each input pair
+
+<br/></li></ul></div><h2 id='TSIACAKfCLV'>1.2. Generating PIPE-SITES (running Walk algo on landscapes)</h2>
+
+Running walk algo to predict top-3 binding sites.<br/>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACA4YatJ'><li id='TSIACABWQMp' class='' value='1'><b>input :</b> landscape for all input pairs
+
+<br/></li><li id='TSIACAazniI' class=''><b>output :</b> combining top-3 sites results for all input pairs in one file -<code> human.out </code>
+
+<br/></li></ul></div><pre id='TSIACAOFU4i'>protein_a   protein_b   PIPE_score  Matrix_max  running_time    sim_weighted_score  sim_weighted_score_old  site1_height    site1a_start    site1a_end  site1b_start    site1b_end  site2_height    site2a_start    site2a_end  site2b_start    site2b_end  site3_height    site3a_start    site3a_end  site3b_start    site3b_end<br>P05412      P01100      0.99996449  74          0.01288104      21.81304603         21.81304603             74              188             225         124             198         73              249             291         132             169         43              190             225         42              112<br>P05412      O43889      0.99996590  67          0.01253891      11.58697320         11.58697320             67              188             225         175             196         53              249             291         172             211         40              190             225         211             242<br>P05387      P05386      0.99956140  194         0.00135708      10.46458333         10.46458333             194             62              94          61              91          142             84              111         61              91          78              62              94          86              109<br>P05155      P00734      0.99998621  27          0.03019214      18.85990698         18.85990698             27              253             285         380             416         27              275             318         380             416         23              78              122         288             316<br>P05155      O00187      0.99998753  24          0.03300405      15.84075218         15.84075218             24              253             285         655             686         24              276             318         655             686         20              77              117         293             316<br>P05154      P03952      0.99998330  27          0.02521110      18.46808431         18.46808431             27              46              98          407             445         26              187             228         407             445         26              328             379         407             445<br></pre>
+
+<h3 id='TSIACAl8Uf6'>1.2.1 Parameter tuning for Walk algo</h3>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACA319oZ'><li id='TSIACAR1I0i' class='' value='1'>Found out the most significant parameter : <b>cutoff</b>
+
+<br/></li><li id='TSIACAk7FvJ' class=''>Tuned this for range 0.3 to 0.9 (default was 0.5)~
+
+<br/></li></ul></div><h1 id='TSIACAs54du'>2. Running PIPE-SW on Protein-Dataset (homo sapiens)</h1>
+
+<h2 id='TSIACA7ybCD'>2.1. Understanding Similarity-Weighted (SW) through 3-D plots</h2>
+
+<h3 id='TSIACAzqIY5'>2.1.1. Original-PIPE landscape</h3>
+
+These are the direct results of PIPE (in the form of<code> .mat </code>files). We will apply various approaches in the upcoming sections on this landscapes to predict binding sites for PPI <br/>
+
+<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/myn9r02ymsXqbkm8ZysarA?a=oDa1jNSsPwH157TibFvnOaz4aHkdstjbWZwVcUs5rxoa' id='TSIACAEEDHC' alt=''></img></div><br/>
+
+<br/>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACATNYmg'><ul><ul><ul><li id='TSIACA4wgL3' class='' value='1'>One example of landscape (<code>.mat </code>file)
+
+<br/></li></ul></ul></ul></ul></div><h3 id='TSIACAi6yzy'>2.1.2. norm_factor</h3>
+
+While calculating the SW landscape we normalize the original landscape value by a factor completely depending on the position/biding-site. This is not uniform for the entire image, meaning norm-factor is not a constant value for the image but for each pixel<code> i,j </code>its value is <code>simProt(i)*simProt(j)</code> <br/>
+
+<br/>
+
+<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/UW6Xbnzc82npc1yKaNlU6g?a=98atc2LuRlLPoOkpa7KVQ9gOAL7sHvxeEl9l1LC52yEa' id='TSIACANuHyf' alt=''></img></div><br/>
+
+<br/>
+
+<br/>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAQVih6'><ul><ul><ul><li id='TSIACANQ3aO' class='' value='1'>one example of what is the value of norm_factor for each pixel
+
+<br/></li></ul></ul></ul></ul></div><h3 id='TSIACAFt62o'>2.1.3. SW-PIPE landscapes</h3>
+
+This represents landscape values right after SW normalization. In summary we can say that<br/>
+
+<pre id='TSIACAawDtY'>SW-PIPE-landscape = Original-PIPE-landscape / norm_factor</pre>
+
+<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/-V1U-IvaDKfChCa0F5lKBQ?a=a12I9Ii6y2LGjUaKJyefC54hFr6vPHW2RMsTtH9IZLwa' id='TSIACAEgtq7' alt=''></img></div><br/>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAptgHm'><ul><ul><ul><li id='TSIACAG26xH' class='' value='1'>one example of SW-landscape
+
+<br/></li></ul></ul></ul></ul></div><h2 id='TSIACAvz7gH'>2.2. Understanding Similarity-Weighted (SW) through heat maps</h2>
+
+<pre id='TSIACAuIAJa'>Original-PIPE-landscape  /  norm_factor                =   SW-PIPE-landscape </pre>
+
+<div data-section-style='11' style='max-width:100%' class='tall'><img src='https://quip.com/blob/TSIAAAjycax/LR3TdPqu9asBAvpOwu62cQ?a=fQYNwc3WYbvZXtM0Z7bjURFeVHJjZaLzOVzaEsSU4eAa' id='TSIACAGFjw7' alt='' width='800' height='996'></img></div><h1 id='TSIACAGqm0D'>3. Getting most recent Validation dataset (homo sapiens)</h1>
+
+<h2 id='TSIACAg8072'>3.1. Getting most recent Domain pairs (homo sapiens)</h2>
+
+We got most updated <code>3did_flat</code> file from 3did source. <br/>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAqcX5j'><li id='TSIACAscrU0' class='' value='1'>source-code :  <code>Accessing_3did/formatFlatFile.py</code>
+
+<br/></li><li id='TSIACAIvZs4' class=''>Input : <code>Accessing_3did/3did_flat</code>
+
+<br/></li></ul></div><pre id='TSIACA4IQKW'>3did format</pre>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAsZEZG'><li id='TSIACAE26pw' class='parent' value='1'>Output : <code>ProteinFiles/interactingDomainPairs.txt</code> (latest from 3did)
+
+<br/></li><ul><li id='TSIACA4VjjU' class=''>(50% more data than the last time it was run)
+
+<br/></li></ul></ul></div><pre id='TSIACA63dBo'>PF10417 PF10417<br>PF10417 PF00578<br>PF10417 PF02195<br>PF10417 PF00085<br>PF12574 PF12574<br>...</pre>
+
+<h2 id='TSIACAsCXK2'>3.2. Get recent Domains found for Protein sequences (human)</h2>
+
+<h3 id='TSIACAKFdEY'>3.2.1. get latest Protein file to this code</h3>
+
+<h3 id='TSIACAEIpe6'><br>3.<b>2.2. Get  proteins with domain for this list</b></h3>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAq63KN'><li id='TSIACA0ixFi' class='parent' value='1'>source-code : <code>FetchPfam/main_parallel.py</code>
+
+<br/></li><ul><li id='TSIACA7sXDJ' class=''>takes 0.5 seconds per protein, per CPU
+
+<br/></li><li id='TSIACAamHkS' class='parent'>hence we need <code>main_parallel.py</code> 
+
+<br/></li><ul><li id='TSIACAEtmmc' class=''>(96 CPUs on AWS, m4.24xlarge 96 CPU, 4GB memory per CPU)
+
+<br/></li></ul></ul><li id='TSIACAqOakn' class=''>Input : <code>ProteinFiles/protein_list.txt</code> ~20K
+
+<br/></li></ul></div><pre id='TSIACATlhe5'>A0A024RCH0  MEKPYNKNEGNLENEGKPEDEVEPDDEGKSDEEEKPDAEGKTECEGKRKAEGEPGDEGQLEDKGSQEKQGKSEGEGKPQGEGKPASQAKPEGQPRAAEKRPAGDYVPRKAKRKTDRGTDDSPKDSQEDLQERHLSSEEMMRECGDVSRAQEELRKKQKMGGFHWMQRDVQDPFAQGDNGVSGE<br>A0A075B762 MVVSAGPWSSEKAEMNILEINETLRPQLAEKKQQFRSLKEKCFLTQLAGFLANRQKKYKYEECKDLIKFMLRNERQFKEEKLAEQLKQAEELRQYKVLVHSQERELTQLREKLREGRDASRSLYEHLQALLTPDEPDKSQGQDLQEQLAEGCRLAQHLVQKLSPENDEDEDEDVQVEEAEKVLESSAPREVQKAEESKVPEDSLEECAITCSNSHGPCDSNQPHKNIKITFEEDEVNSTLVVDRESSHDECQDALNILPVPGPTSSATNVSMVVSAGPLSSEKAEMNILEINEKLRPQLAEKKQQFRNLKEKCFLTQLSGFLANQQKKYKYEECKDLIKFMLRNERQFKEEKLAEQLKQAEELRQYKVLVHAQERELTQLKEKLREGRDASRSLNEHLQALLTPYEPDKSQGQDLQEQLAEGCRLAQHLVQKLSPENDNDDDEDVQVEVAEKVQKSSAPREMQKAEEKEVPEDSLEECAITYSNSHGSYDSNQPHRKTKITFEEDKVDSTLIGSSSHVEWEDAVHIIPENESDDEEEEEKGPVSPRNLQESEEEEVPQESWDEGYSTLSIPPEMLASYQSYSSTFHSLEEQQVCMAVDIGRHRWDQVKKEDQEATGPRLSRELLDEKGPEVLQDSQDRCYSTPSGCLELTDSCQPYRSAFYILEQQRVGLAIDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQRVGFAFDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDEEEEEDQDPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEENHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLEEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQRVGFAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDEEEEEDQDPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLEEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQRVGFAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDEEEEEDQDPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQHVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQHVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQHVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQHVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDQEEEEDQDPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQHVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQHVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQHVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDEEEEEDQDPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGYLELTDSCQPYRSAFYVLEQQHVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELCDSCQPYRSAFYVLEQQRVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDKIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLNGVLMEVEEREVLQDSLDRCYSTPSMYFELPDSFQHYRSVFYSFEEQHISFALYVDNRFFTLTVTSLHLVFQMGVIFPQ<br>A0A087WTN9 MAWWKSWIEQEGVTVKSSSHFNPDPDAETLYKAMKGIGVGSQLLSHQAAAFAFPSSALTSVSPWGQQGHLCCNPAGTNEQAIIDVLTKRSNTQRQQIAKSFKAQFGKDLTETLKSELSGKFERLIVALMYPPYRYEAKELHDAMKGLGTKEGVIIEILASRTKNQLREIMKAYEEDYGSSLEEDIQADTSGYLERILVCLLQGSRDDVSSFVDPGLALQDAQDLYAAGEKIRGTDEMKFITILCTRSATHLLRVFEEYEKIANKSIEDSIKSETHGSLEEAMLTVVKCTQNLHSYFAERLYYAMKGAGTRDGTLIRNIVSRSEIDLNLIKCHFKKMYGKTLSSMIMEDTSGDYKNALLSLVGSDP<br>A0A087WU62 MAAPIPQGFSCLSRFLGWWSRQPVLVTQSAAIVPVRTKKRFTPPIYQPKFKTEKEFMQHARKAGLVIPPEKSDRSIHLACTAGIFDAYVPPEGDARISSLSKEGLIERTERMKKTMASQVSIRRIKDYDANFKIKDFPEKAKDIFIEAHLCLNNSDHDRLHTLVTEHCFPTLAIYDRFGRLMYGQEDVPKDVLEYVVFEKQLTNPYGSWRMHTKIVPPWAPPKQPILKTVMIPGPQLKPEEEYEEAQGEAQKPQLA<br>A0A087WUF1 MVVSAGPWSSEKAEMNILEINEKLRPQLAENKQQFRNLKERCFLTQLAGFLANRQKKYKYEECKDLIKFMLRNERQFKEEKLAEQLKQAEELRQYKVLVHSQERELTQLREKLREGRDASRSLNEHLQALLTPDEPDKSQGQDLQEQLAEGCRLAQQLVQKLSPENDEDEDEDVQVEEDEKVLESSAPREVQKAEESKVPEDSLEECAITCSNSHGPCDSIQPHKNIKITFEEDKVNSTVVVDRKSSHDECQDALNILPVPGPTSSATNVSMVVSAGPLSSEKAEMNILEINEKLRPQLAEKKQQFRSLKEKCFVTQLAGFLAKQQNKYKYEECKDLIKSMLRNELQFKEEKLAEQLKQAEELRQYKVLVHSQERELTQLREKLREGRDASRSLNEHLQALLTPDEPDKSQGQDLQEQLAEGCRLAQHLVQKLSPENDEDEDEDVQVEEDEKVLESSSPREMQKAEESKVPEDSLEECAITCSNSHGPCDSNQPHKNIKITFEEDKVNSSLVVDRESSHDECQDALNILPVPGPTSSATNVSMVVSAGPLSSEKAEMNILEINEKLRPQLAEKKQQFRSLKEKCFVTQVACFLAKQQNKYKYEECKDLLKSMLRNELQFKEEKLAEQLKQAEELRQYKVLVHSQERELTQLREKLREGRDASRSLNEHLQALLTPDEPDKSQGQDLQEQLAEGCRLAQHLVQKLSPENDNDDDEDVQVEVAEKVQKSSSPREMQKAEEKEVPEDSLEECAITCSNSHGPYDSNQPHRKTKITFEEDKVDSTLIGSSSHVEWEDAVHIIPENESDDEEEEEKGPVSPRNLQESEEEEVPQESWDEGYSTLSIPPERLASYQSYSSTFHSLEEQQVCMAVDIGRHRWDQVKKEDQEATGPRLSRELLAEKEPEVLQDSLDRCYSTPSVYLGLTDSCQPYRSAFYVLEQQRVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLAEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYRSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYRSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKKRRRGRKEGEEDQNPPCPRLSRELLAEKEPEVLQDSLDRWYSTPSVYLGLTDPCQPYRSAFYVLEQQRVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLAEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYRSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYRSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKKRRRGRKEGEEDQNPPCPRLNSVLMEVEEPEVLQDSLDRCYSTPSMYFELPDSFQHYRSVFYSFEEQHITFALDMDNSFFTLTVTSLHLVFQMGVIFPQ<br>...<br>...</pre>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAcGuNY'><li id='TSIACASY17b' class='' value='1'>Output : <code>ProteinFiles/ProteinPfam.txt</code> (domains present for all 20236 sequences)
+
+<br/></li></ul></div><pre id='TSIACAB2mII'>A0A024RCH0 PF04538<br>A0A075B762 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758<br>A0A087WTN9 PF00191 PF00191 PF00191 PF00191<br>A0A087WU62 PF04280<br>A0A087WUF1 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758<br>...<br>...</pre>
+
+<h2 id='TSIACAMgkgm'>3.3. Generate multi/single/no domain</h2>
+
+ Required the new known interacting Protein pairs <br/>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAdCLVM'><li id='TSIACApK9wh' class='' value='1'>~66k Human protein_pairs
+
+<br/></li><li id='TSIACAdbNvv' class=''>source-code:<code> InteractionLists/main.py</code>
+
+<br/></li><li id='TSIACAYSlYp' class='parent'>Input: 
+
+<br/></li><ul><li id='TSIACAZ7RBx' class=''><code>ProteinFiles/interactingDomainPairs.txt</code>
+
+<br/></li><li id='TSIACAw0UuY' class=''><code>ProteinFiles/ProteinPfam.txt</code>
+
+<br/></li><li id='TSIACAhjWsZ' class=''><code>protein_pairs</code> (~66k for human)
+
+<br/></li></ul><li id='TSIACA8Lytz' class='parent'>outputs are:
+
+<br/></li><ul><li id='TSIACAPNSqN' class=''><code>InteractionLists/singleDomain.txt</code> (~2.5K pairs)
+
+<br/></li></ul></ul></div><pre id='TSIACA7rmQv'>ProteinA ProteinB DomainA DomainB<br>O00139 O00139 PF00225 PF00225<br>O00204 O00204 PF00685 PF00685<br>O00268 O00268 PF07531 PF07531<br>...<br>...</pre>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAqgGPj'><ul><li id='TSIACAMkgHC' class='' value='1'><code>InteractionLists/noDomain.txt</code> (~57K pairs)
+
+<br/></li></ul></ul></div><pre id='TSIACA9sb6f'>A0AVI4 A0AVI4<br>A0MZ66 A0MZ66<br>A8K8P3 A8K8P3<br>O00161 O00161<br>...<br>...</pre>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAGQhb3'><ul><li id='TSIACANfwPc' class='' value='1'><code>InteractionLists/multiDomain.txt</code>  (~5K pairs)
+
+<br/></li></ul></ul></div><pre id='TSIACA3eoXq'>A6NLU0 A6NLU0<br>O00141 O00141<br>O00148 O00148<br>O00180 O00180<br>...<br>...</pre>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACA1A0ds'><ul><li id='TSIACAc4Hpf' class='' value='1'>Since we are focusing on single domain interactions, format for <code>InteractionLists/singleDomain.txt</code> is the most comprehensive and therefore can be used for further processes/calculations.
+
+<br/></li></ul></ul></div><h2 id='TSIACAFRRK6'>3.4. Get the domain details for single domain interaction</h2>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACA9Ju9g'><li id='TSIACAi1qhA' class='' value='1'>source-code : <code>InteractionLists/stats/domainLength-parallel.py</code>
+
+<br/></li><li id='TSIACAyaesG' class=''>Input : <code>InteractionLists/singleDomain.txt</code> 
+
+<br/></li><li id='TSIACAkmQib' class=''>Output : <code>ProteinFiles/length.txt</code> (~2.5K pairs)
+
+<br/></li></ul></div><pre id='TSIACAwvTj2'>Protein Domain ProteinLength DomainLength DomainStart DomainEnd<br>Q13263 PF00628 835           45           627         672<br>P42226 PF01017 847           107          161         268<br>Q9NYK1 PF01582 1049          158          890         1048<br>...<br>...</pre>
+
+<h1 id='TSIACA6nmIY'>4. Running PIPE and PIPE-SW on Validation dataset</h1>
+
+Now we run section 1 (PIPE) and 2 (SW-PIPE) on the validation set we obtained in the above section. <br/>
+
+<br/>
+
+A sample looks like this:<br/>
+
+<div data-section-style='13'><table id='TSIACAV9Kfq' title='Sheet2' style='width: 36em'><thead><tr><th class='empty' style='width: 2em'/><th id='TSIACAszjU7' class='empty' style='width: 6em'>A<br/></th><th id='TSIACA3fP8n' class='empty' style='width: 6em'>B<br/></th><th id='TSIACA7V2YR' class='empty' style='width: 6em'>C<br/></th><th id='TSIACAhGOts' class='empty' style='width: 6em'>D<br/></th><th id='TSIACAaf1ih' class='empty' style='width: 6em'>E<br/></th><th id='TSIACAzXbIE' class='empty' style='width: 6em'>F<br/></th></tr></thead><tbody><tr id='TSIACABeoO4'><td style='background-color:#f0f0f0'>1</td><td id='s:TSIACABeoO4;TSIACAiFN64' style='text-align: left;vertical-align: bottom;' class='bold'>protein_a
+
+<br/></td><td id='s:TSIACABeoO4;TSIACALevJS' style='text-align: left;vertical-align: bottom;' class='bold'>protein_b
+
+<br/></td><td id='s:TSIACABeoO4;TSIACAt1Hay' style='text-align: left;vertical-align: bottom;' class='bold'>DM1
+
+<br/></td><td id='s:TSIACABeoO4;TSIACAFKYhx' style='text-align: left;vertical-align: bottom;' class='bold'>DM2
+
+<br/></td><td id='s:TSIACABeoO4;TSIACA1ELmO' style='text-align: left;vertical-align: bottom;' class='bold'>DM3
+
+<br/></td><td id='s:TSIACABeoO4;TSIACAsrRYF' style='text-align: left;vertical-align: bottom;' class='bold'>MIN_DM
+
+<br/></td></tr><tr id='TSIACAMC1Ry'><td style='background-color:#f0f0f0'>2</td><td id='s:TSIACAMC1Ry;TSIACAiFN64' style='text-align: left;vertical-align: bottom;'>Q16539
+
+<br/></td><td id='s:TSIACAMC1Ry;TSIACALevJS' style='text-align: left;vertical-align: bottom;'>Q02779
+
+<br/></td><td id='s:TSIACAMC1Ry;TSIACAt1Hay' style='text-align: left;vertical-align: bottom;'>0.08349
+
+<br/></td><td id='s:TSIACAMC1Ry;TSIACAFKYhx' style='text-align: left;vertical-align: bottom;'>0.40181
+
+<br/></td><td id='s:TSIACAMC1Ry;TSIACA1ELmO' style='text-align: left;vertical-align: bottom;'>0.7121
+
+<br/></td><td id='s:TSIACAMC1Ry;TSIACAsrRYF' style='text-align: left;vertical-align: bottom;'>0.08349
+
+<br/></td></tr><tr id='TSIACACFvmL'><td style='background-color:#f0f0f0'>3</td><td id='s:TSIACACFvmL;TSIACAiFN64' style='text-align: left;vertical-align: bottom;'>Q8WVZ7
+
+<br/></td><td id='s:TSIACACFvmL;TSIACALevJS' style='text-align: left;vertical-align: bottom;'>P63279
+
+<br/></td><td id='s:TSIACACFvmL;TSIACAt1Hay' style='text-align: left;vertical-align: bottom;'>0.49872
+
+<br/></td><td id='s:TSIACACFvmL;TSIACAFKYhx' style='text-align: left;vertical-align: bottom;'>0.0837
+
+<br/></td><td id='s:TSIACACFvmL;TSIACA1ELmO' style='text-align: left;vertical-align: bottom;'>0.88483
+
+<br/></td><td id='s:TSIACACFvmL;TSIACAsrRYF' style='text-align: left;vertical-align: bottom;'>0.0837
+
+<br/></td></tr><tr id='TSIACADjzPg'><td style='background-color:#f0f0f0'>4</td><td id='s:TSIACADjzPg;TSIACAiFN64' style='text-align: left;vertical-align: bottom;'>Q9Y2X8
+
+<br/></td><td id='s:TSIACADjzPg;TSIACALevJS' style='text-align: left;vertical-align: bottom;'>Q9BZR9
+
+<br/></td><td id='s:TSIACADjzPg;TSIACAt1Hay' style='text-align: left;vertical-align: bottom;'>0.08391
+
+<br/></td><td id='s:TSIACADjzPg;TSIACAFKYhx' style='text-align: left;vertical-align: bottom;'>0.61583
+
+<br/></td><td id='s:TSIACADjzPg;TSIACA1ELmO' style='text-align: left;vertical-align: bottom;'>0.69161
+
+<br/></td><td id='s:TSIACADjzPg;TSIACAsrRYF' style='text-align: left;vertical-align: bottom;'>0.08391
+
+<br/></td></tr><tr id='TSIACAdyFQa'><td style='background-color:#f0f0f0'>5</td><td id='s:TSIACAdyFQa;TSIACAiFN64' style='text-align: left;vertical-align: bottom;'>P05121
+
+<br/></td><td id='s:TSIACAdyFQa;TSIACALevJS' style='text-align: left;vertical-align: bottom;'>P00749
+
+<br/></td><td id='s:TSIACAdyFQa;TSIACAt1Hay' style='text-align: left;vertical-align: bottom;'>0.08399
+
+<br/></td><td id='s:TSIACAdyFQa;TSIACAFKYhx' style='text-align: left;vertical-align: bottom;'>0.98858
+
+<br/></td><td id='s:TSIACAdyFQa;TSIACA1ELmO' style='text-align: left;vertical-align: bottom;'>0.98858
+
+<br/></td><td id='s:TSIACAdyFQa;TSIACAsrRYF' style='text-align: left;vertical-align: bottom;'>0.08399
+
+<br/></td></tr><tr id='TSIACAOqNTO'><td style='background-color:#f0f0f0'>6</td><td id='s:TSIACAOqNTO;TSIACAiFN64' style='text-align: left;vertical-align: bottom;'>Q9BXL6
+
+<br/></td><td id='s:TSIACAOqNTO;TSIACALevJS' style='text-align: left;vertical-align: bottom;'>O95999
+
+<br/></td><td id='s:TSIACAOqNTO;TSIACAt1Hay' style='text-align: left;vertical-align: bottom;'>0.34019
+
+<br/></td><td id='s:TSIACAOqNTO;TSIACAFKYhx' style='text-align: left;vertical-align: bottom;'>0.62635
+
+<br/></td><td id='s:TSIACAOqNTO;TSIACA1ELmO' style='text-align: left;vertical-align: bottom;'>0.73106
+
+<br/></td><td id='s:TSIACAOqNTO;TSIACAsrRYF' style='text-align: left;vertical-align: bottom;'>0.34019
+
+<br/></td></tr><tr id='TSIACAWu9YR'><td style='background-color:#f0f0f0'>7</td><td id='s:TSIACAWu9YR;TSIACAiFN64' style='text-align: left;vertical-align: bottom;'>P45985
+
+<br/></td><td id='s:TSIACAWu9YR;TSIACALevJS' style='text-align: left;vertical-align: bottom;'>O43318
+
+<br/></td><td id='s:TSIACAWu9YR;TSIACAt1Hay' style='text-align: left;vertical-align: bottom;'>0.34021
+
+<br/></td><td id='s:TSIACAWu9YR;TSIACAFKYhx' style='text-align: left;vertical-align: bottom;'>0.73206
+
+<br/></td><td id='s:TSIACAWu9YR;TSIACA1ELmO' style='text-align: left;vertical-align: bottom;'>0.73206
+
+<br/></td><td id='s:TSIACAWu9YR;TSIACAsrRYF' style='text-align: left;vertical-align: bottom;'>0.34021
+
+<br/></td></tr><tr id='TSIACAR3Fkv'><td style='background-color:#f0f0f0'>8</td><td id='s:TSIACAR3Fkv;TSIACAiFN64' style='text-align: left;vertical-align: bottom;'>Q8N2K1
+
+<br/></td><td id='s:TSIACAR3Fkv;TSIACALevJS' style='text-align: left;vertical-align: bottom;'>Q14258
+
+<br/></td><td id='s:TSIACAR3Fkv;TSIACAt1Hay' style='text-align: left;vertical-align: bottom;'>0.34022
+
+<br/></td><td id='s:TSIACAR3Fkv;TSIACAFKYhx' style='text-align: left;vertical-align: bottom;'>0.35493
+
+<br/></td><td id='s:TSIACAR3Fkv;TSIACA1ELmO' style='text-align: left;vertical-align: bottom;'>0.52556
+
+<br/></td><td id='s:TSIACAR3Fkv;TSIACAsrRYF' style='text-align: left;vertical-align: bottom;'>0.34022
+
+<br/></td></tr></tbody></table></div><h1 id='TSIACAoWyeN'>5. Validation of binding site prediction for Various Approaches</h1>
+
+For the calculations in below sections, we are measuring effectiveness of the different approaches for “at least one binding site”. Meaning, how confident are we to say that we have found at least one binding site for PPI while validating with Lab. <b>Hence we are using MIN_DM</b><br/>
+
+<h2 id='TSIACARbhDr'>5.1. Approach-1 (ORIGINAL ALGORITHM) : PIPE-WALK</h2>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAQ0WPs'><li id='TSIACA0pMzt' class='' value='1'>This approach is Walk algorithm applies on landscapes (<b>NOT on Sim-weighted landscapes (SW-landscapes) </b>)
+
+<br/></li><li id='TSIACABrY6V' class=''>Overhead view with site/range from validation dataset(lab) and PIPE predicted sites/ranges
+
+<br/></li></ul></div><div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/hMWHANQZsoagRsTgIsjU-A?a=bXLaM8TipVTsuGzIv22lkh21bAVMPBXN1AOHV1ei8t4a' id='TSIACAb8fRl' alt=''></img></div><br/>
+
+<h2 id='TSIACAdpWvc'>5.2. Approach-2 : Panoramic View</h2>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACA9P2KN'><li id='TSIACAE5e9V' class='' value='1'>a.k.a <b>Aerial view</b> a.k.a G<b>ift unwrapping</b>
+
+<br/></li><li id='TSIACA3OBrQ' class=''>This is a different algorithm from the original walk algorithm (applied on landscapes, <b>NOT on SW-landscapes</b>)
+
+<br/></li><li id='TSIACA51MyD' class=''>Overhead view with site/range from validation dataset(lab) and PIPE predicted sites/ranges 
+
+<br/></li></ul></div><div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/fdriI-lyitN3AUgSn9oPrg?a=ucZN6aA0eUJd3UAXmaqnT0BaLf1PWayhGdEtKqlOOBka' id='TSIACAQsaMo' alt=''></img></div><br/>
+
+<h2 id='TSIACAlzFLA'>5.3. Approach 3: BRIGHT-SPOT-DETECTION</h2>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACALgpWe'><li id='TSIACA5sYKa' class='' value='1'>This is also different algorithm from the original walk algorithm
+
+<br/></li><li id='TSIACAsQ4nO' class=''>Overhead view with site/range from validation dataset(lab) and PIPE predicted sites/ranges
+
+<br/></li></ul></div><div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/YuAwnG3lnkuBJfMMuhkE6g?a=jDljvow06Xa5NrGnLA7Rqy8CNynsBZuOXz4YvuGQZYEa' id='TSIACAJPmZ3' alt=''></img></div><br/>
+
+<br/>
+
+<h2 id='TSIACAGfCkK'>5.4. PIPE-SW-WALK</h2>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAryE2V'><li id='TSIACA5GKc8' class='' value='1'>Overhead view with site/range from validation dataset(lab) and PIPE predicted sites/ranges
+
+<br/></li></ul></div><div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/hMWHANQZsoagRsTgIsjU-A?a=bXLaM8TipVTsuGzIv22lkh21bAVMPBXN1AOHV1ei8t4a' id='TSIACACHNcp' alt=''></img></div><br/>
+
+<h2 id='TSIACA1Phqr'>5.5. PIPE-SW-SPOT-DETECT</h2>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAVV9Ol'><li id='TSIACArNstX' class='' value='1'>Overhead view with site/range from validation dataset(lab) and PIPE predicted sites/ranges
+
+<br/></li></ul></div><div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/6Cx0pBTwS_lEtEKGxrNjJg?a=GqDhlOS6kCML8DN2ImywQChnvOpLazqiM4pfMHb97goa' id='TSIACAM09pr' alt=''></img></div><br/>
+
+<br/>
+
+<h1 id='TSIACATGjkY'>6. Enrichment Calculation</h1>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAsmVru'><li id='TSIACAPzv7c' class='parent' value='1'>Using the exact similar approach as given in original PIPE-sites paper by calculating the similarities between 2 protein pairs i.e. for every protein pair if DM = 1 from the lab site then we are predicting worst interaction site but if the DM = 0 when comparing to lab site then that would be an ideal prediction. 
+
+<br/></li><ul><li id='TSIACAgojJ6' class=''>Hence, we are using distribution of DM values representing enrichment as shown in these plots. 
+
+<br/></li></ul><li id='TSIACACni4Z' class=''>We also used Dice-coefficient and Jaccard index (to compare with DM) but we found those values to be highly skewed because of the nature of our problem and therefore concluded those to be working well for this type of problem.
+
+<br/></li></ul></div><h2 id='TSIACAjvRQn'>6.1. PIPE-WALK </h2>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAJZVcA'><li id='TSIACA7W2v2' class='' value='1'>At different DM values (range 0.15-0.3), number of interacting pairs (out of ~2.5K protein pairs) for single domain proteins.
+
+<br/></li></ul></div><div data-section-style='13'><table id='TSIACABQ6Xf' title='Sheet3' style='width: 13.2667em'><thead><tr><th class='empty' style='width: 2em'/><th id='TSIACA8ls0K' class='empty' style='width: 7.26667em'>A<br/></th><th id='TSIACAR1sZs' class='empty' style='width: 6em'>B<br/></th></tr></thead><tbody><tr id='TSIACAushvU'><td style='background-color:#f0f0f0'>1</td><td id='s:TSIACAushvU;TSIACAinrIe' style='' class='bold'>DM values (&lt;=)
+
+<br/></td><td id='s:TSIACAushvU;TSIACAc0Zby' style='' class='bold'>Protein Pairs
+
+<br/></td></tr><tr id='TSIACAvvaQr'><td style='background-color:#f0f0f0'>2</td><td id='s:TSIACAvvaQr;TSIACAinrIe' style='text-align: left;vertical-align: bottom;' class='bold'>0.15
+
+<br/></td><td id='s:TSIACAvvaQr;TSIACAc0Zby' style='text-align: left;vertical-align: bottom;'>791
+
+<br/></td></tr><tr id='TSIACAezx7o'><td style='background-color:#f0f0f0'>3</td><td id='s:TSIACAezx7o;TSIACAinrIe' style='text-align: left;vertical-align: bottom;' class='bold'>0.2
+
+<br/></td><td id='s:TSIACAezx7o;TSIACAc0Zby' style='text-align: left;vertical-align: bottom;'>967
+
+<br/></td></tr><tr id='TSIACAz2ukT'><td style='background-color:#f0f0f0'>4</td><td id='s:TSIACAz2ukT;TSIACAinrIe' style='text-align: left;vertical-align: bottom;' class='bold'>0.25
+
+<br/></td><td id='s:TSIACAz2ukT;TSIACAc0Zby' style='text-align: left;vertical-align: bottom;'>1327
+
+<br/></td></tr><tr id='TSIACAmX8PC'><td style='background-color:#f0f0f0'>5</td><td id='s:TSIACAmX8PC;TSIACAinrIe' style='text-align: left;vertical-align: bottom;' class='bold'>0.3
+
+<br/></td><td id='s:TSIACAmX8PC;TSIACAc0Zby' style='text-align: left;vertical-align: bottom;'>1553
+
+<br/></td></tr></tbody></table></div><div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/fcc_zEjw-l26unF41QcgSQ?a=NmqatOJmk0GO2yjfNOtreU8tZraWf31F2cO58J7rZDEa' id='TSIACA0369k' alt=''></img></div><del><b>SENSITIVITY</b> = 0.61</del><br/>
+
+<br/>
+
+<h2 id='TSIACAMIbdB'>6.2. PIPE-PANORAMA </h2>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAXrg52'><li id='TSIACA9d0JS' class='' value='1'>At different DM values (range 0.15-0.3), number of interacting pairs (out of ~2.5k protein pairs) for single domain proteins.
+
+<br/></li></ul></div><div data-section-style='13'><table id='TSIACA9mJd4' title='Sheet4' style='width: 13.6em'><thead><tr><th class='empty' style='width: 2em'/><th id='TSIACAa1OgT' class='empty' style='width: 7.6em'>A<br/></th><th id='TSIACAkBVZG' class='empty' style='width: 6em'>B<br/></th></tr></thead><tbody><tr id='TSIACAeRR2h'><td style='background-color:#f0f0f0'>1</td><td id='s:TSIACAeRR2h;TSIACAhl7aN' style='' class='bold'>DM values (&lt;=)
+
+<br/></td><td id='s:TSIACAeRR2h;TSIACAVhsrF' style='' class='bold'>Protein Pairs
+
+<br/></td></tr><tr id='TSIACAHecwC'><td style='background-color:#f0f0f0'>2</td><td id='s:TSIACAHecwC;TSIACAhl7aN' style='text-align: left;vertical-align: bottom;' class='bold'>0.15
+
+<br/></td><td id='s:TSIACAHecwC;TSIACAVhsrF' style='text-align: left;vertical-align: bottom;'>748
+
+<br/></td></tr><tr id='TSIACASuBfH'><td style='background-color:#f0f0f0'>3</td><td id='s:TSIACASuBfH;TSIACAhl7aN' style='text-align: left;vertical-align: bottom;' class='bold'>0.2
+
+<br/></td><td id='s:TSIACASuBfH;TSIACAVhsrF' style='text-align: left;vertical-align: bottom;'>970
+
+<br/></td></tr><tr id='TSIACAVrBiY'><td style='background-color:#f0f0f0'>4</td><td id='s:TSIACAVrBiY;TSIACAhl7aN' style='text-align: left;vertical-align: bottom;' class='bold'>0.25
+
+<br/></td><td id='s:TSIACAVrBiY;TSIACAVhsrF' style='text-align: left;vertical-align: bottom;'>1239
+
+<br/></td></tr><tr id='TSIACA5n1g8'><td style='background-color:#f0f0f0'>5</td><td id='s:TSIACA5n1g8;TSIACAhl7aN' style='text-align: left;vertical-align: bottom;' class='bold'>0.3
+
+<br/></td><td id='s:TSIACA5n1g8;TSIACAVhsrF' style='text-align: left;vertical-align: bottom;'>1478
+
+<br/></td></tr></tbody></table></div><div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/uMRfp6D5Y-P4Gv2t7zVNmA?a=33nhEJKPRPve65UrgeJqD3x6Eye7PaPaIYPYhLpFaFga' id='TSIACAARuku' alt=''></img></div><br/>
+
+<del><b>SENSITIVITY</b> = 0.59</del><br/>
+
+<h2 id='TSIACA9XPdY'>6.3. PIPE-SPOT DETECTION</h2>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAPOQsK'><li id='TSIACA1Wiju' class='' value='1'>At different DM values (range 0.15-0.3), number of interacting pairs (out of ~2.5k protein pairs) for single domain proteins when applied bright spot detection method
+
+<br/></li></ul></div><div data-section-style='13'><table id='TSIACADoOAC' title='Sheet5' style='width: 13.4667em'><thead><tr><th class='empty' style='width: 2em'/><th id='TSIACAVecbx' class='empty' style='width: 7.46667em'>A<br/></th><th id='TSIACAJzsLN' class='empty' style='width: 6em'>B<br/></th></tr></thead><tbody><tr id='TSIACA64ua7'><td style='background-color:#f0f0f0'>1</td><td id='s:TSIACA64ua7;TSIACAXRoce' style='' class='bold'>DM values (&lt;=)
+
+<br/></td><td id='s:TSIACA64ua7;TSIACAa0mKR' style='' class='bold'>Protein Pairs
+
+<br/></td></tr><tr id='TSIACAP8wEf'><td style='background-color:#f0f0f0'>2</td><td id='s:TSIACAP8wEf;TSIACAXRoce' style='text-align: left;vertical-align: bottom;' class='bold'>0.15
+
+<br/></td><td id='s:TSIACAP8wEf;TSIACAa0mKR' style='text-align: left;vertical-align: bottom;'>796
+
+<br/></td></tr><tr id='TSIACAKfEmi'><td style='background-color:#f0f0f0'>3</td><td id='s:TSIACAKfEmi;TSIACAXRoce' style='text-align: left;vertical-align: bottom;' class='bold'>0.2
+
+<br/></td><td id='s:TSIACAKfEmi;TSIACAa0mKR' style='text-align: left;vertical-align: bottom;'>1120
+
+<br/></td></tr><tr id='TSIACAEiq7i'><td style='background-color:#f0f0f0'>4</td><td id='s:TSIACAEiq7i;TSIACAXRoce' style='text-align: left;vertical-align: bottom;' class='bold'>0.25
+
+<br/></td><td id='s:TSIACAEiq7i;TSIACAa0mKR' style='text-align: left;vertical-align: bottom;'>1448
+
+<br/></td></tr><tr id='TSIACAqL777'><td style='background-color:#f0f0f0'>5</td><td id='s:TSIACAqL777;TSIACAXRoce' style='text-align: left;vertical-align: bottom;' class='bold'>0.3
+
+<br/></td><td id='s:TSIACAqL777;TSIACAa0mKR' style='text-align: left;vertical-align: bottom;'>1705
+
+<br/></td></tr></tbody></table></div><div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/cGz80U9viH6N7XGZOr6qYA?a=BXkUZaTilMQuDXdNBdKgerKmQu661qQ70PAGMXDduE4a' id='TSIACA8PFz1' alt=''></img></div><br/>
+
+<del><b>SENSITIVITY = </b>0.68</del><br/>
+
+<h2 id='TSIACA2DQ7Z'>6.4. PIPE-SW-WALK</h2>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACA4KcP6'><li id='TSIACAVqcJm' class='' value='1'>At different DM values (range 0.15-0.3), number of interacting pairs (out of ~2.5k protein pairs) for single domain proteins.
+
+<br/></li></ul></div><div data-section-style='13'><table id='TSIACAOHD1P' title='Sheet6' style='width: 13.5333em'><thead><tr><th class='empty' style='width: 2em'/><th id='TSIACA3GOPK' class='empty' style='width: 7.53333em'>A<br/></th><th id='TSIACAPGhax' class='empty' style='width: 6em'>B<br/></th></tr></thead><tbody><tr id='TSIACA7ICBh'><td style='background-color:#f0f0f0'>1</td><td id='s:TSIACA7ICBh;TSIACAfZPkX' style='' class='bold'>DM values (&lt;=)
+
+<br/></td><td id='s:TSIACA7ICBh;TSIACAh04cK' style='' class='bold'>Protein Pairs
+
+<br/></td></tr><tr id='TSIACAusXiA'><td style='background-color:#f0f0f0'>2</td><td id='s:TSIACAusXiA;TSIACAfZPkX' style='text-align: left;vertical-align: bottom;' class='bold'>0.15
+
+<br/></td><td id='s:TSIACAusXiA;TSIACAh04cK' style='text-align: left;vertical-align: bottom;'>191
+
+<br/></td></tr><tr id='TSIACAbaWFC'><td style='background-color:#f0f0f0'>3</td><td id='s:TSIACAbaWFC;TSIACAfZPkX' style='text-align: left;vertical-align: bottom;' class='bold'>0.2
+
+<br/></td><td id='s:TSIACAbaWFC;TSIACAh04cK' style='text-align: left;vertical-align: bottom;'>323
+
+<br/></td></tr><tr id='TSIACAVYJNh'><td style='background-color:#f0f0f0'>4</td><td id='s:TSIACAVYJNh;TSIACAfZPkX' style='text-align: left;vertical-align: bottom;' class='bold'>0.25
+
+<br/></td><td id='s:TSIACAVYJNh;TSIACAh04cK' style='text-align: left;vertical-align: bottom;'>497
+
+<br/></td></tr><tr id='TSIACAkunc0'><td style='background-color:#f0f0f0'>5</td><td id='s:TSIACAkunc0;TSIACAfZPkX' style='text-align: left;vertical-align: bottom;' class='bold'>0.3
+
+<br/></td><td id='s:TSIACAkunc0;TSIACAh04cK' style='text-align: left;vertical-align: bottom;'>658
+
+<br/></td></tr></tbody></table></div><div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/b1FK5DBBCFLA-1dSCV0EEA?a=ErlZsRxlAe7WvIGFQ9HW5IEayp0nsbC66MWQWPjBtTga' id='TSIACAhQ4uw' alt=''></img></div><br/>
+
+<br/>
+
+<del><b>SENSITIVITY</b> = 0.26</del><br/>
+
+<h2 id='TSIACAr8zRt'>6.5. PIPE-SW-SPOT DETECTION</h2>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAlGHuT'><li id='TSIACAJyKkr' class='' value='1'>At different DM values (range 0.15-0.3), number of interacting pairs (out of ~2.5k protein pairs) for single domain proteins.
+
+<br/></li></ul></div><div data-section-style='13'><table id='TSIACAmqZsw' title='Sheet7' style='width: 14.3333em'><thead><tr><th class='empty' style='width: 2em'/><th id='TSIACAgCRJI' class='empty' style='width: 8.33333em'>A<br/></th><th id='TSIACAKKtc5' class='empty' style='width: 6em'>B<br/></th></tr></thead><tbody><tr id='TSIACA5c5VJ'><td style='background-color:#f0f0f0'>1</td><td id='s:TSIACA5c5VJ;TSIACAO28n1' style='' class='bold'>DM values (&lt;=)
+
+<br/></td><td id='s:TSIACA5c5VJ;TSIACA90o1E' style='text-align: left;vertical-align: bottom;' class='bold'>Protein Pairs
+
+<br/></td></tr><tr id='TSIACAsN7gA'><td style='background-color:#f0f0f0'>2</td><td id='s:TSIACAsN7gA;TSIACAO28n1' style='text-align: left;vertical-align: bottom;' class='bold'>0.15
+
+<br/></td><td id='s:TSIACAsN7gA;TSIACA90o1E' style='text-align: left;vertical-align: bottom;'>829
+
+<br/></td></tr><tr id='TSIACAud2Hx'><td style='background-color:#f0f0f0'>3</td><td id='s:TSIACAud2Hx;TSIACAO28n1' style='text-align: left;vertical-align: bottom;' class='bold'>0.2
+
+<br/></td><td id='s:TSIACAud2Hx;TSIACA90o1E' style='text-align: left;vertical-align: bottom;'>1209
+
+<br/></td></tr><tr id='TSIACA1IS13'><td style='background-color:#f0f0f0'>4</td><td id='s:TSIACA1IS13;TSIACAO28n1' style='text-align: left;vertical-align: bottom;' class='bold'>0.25
+
+<br/></td><td id='s:TSIACA1IS13;TSIACA90o1E' style='text-align: left;vertical-align: bottom;'>1627
+
+<br/></td></tr><tr id='TSIACAXe02J'><td style='background-color:#f0f0f0'>5</td><td id='s:TSIACAXe02J;TSIACAO28n1' style='text-align: left;vertical-align: bottom;' class='bold'>0.3
+
+<br/></td><td id='s:TSIACAXe02J;TSIACA90o1E' style='text-align: left;vertical-align: bottom;'>2022
+
+<br/></td></tr></tbody></table></div><div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/nyc1bM4vgYMqOsKz8LEupg?a=al5vlA7a47LyoojVhWbGFdCxGVWMM0p7puQl5ixS8dka' id='TSIACARg0Qg' alt=''></img></div><br/>
+
+<br/>
+
+<br/>
+
+<del><b>SENSITIVITY</b> = 0.80</del><br/>
+
+<h1 id='TSIACAEFWx6'>7. Insights for Walk Vs Panoramic view and Walk Vs Bright-Spot Detection</h1>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACASneDm'><li id='TSIACAF6UuX' class='' value='1'>Walk algo works really good when there is a steep contrast in landscape-values (image)
+
+<br/></li><li id='TSIACAR2ym9' class=''>Sim-Weighted normalizes the landscape-values (image) by a factor completely depending on the position/biding-site. This is not uniform for the entire image, meaning norm-factor is not a constant value for the image but for each pixel<code> i,j </code>its value is <code>simProt(i)*simProt(j)</code> This reduces the contrast of image overall reducing the performace/accuracy/TruePositiveRate of Walk-Algo
+
+<br/></li><li id='TSIACAmdijF' class=''>Since Panorama is very similar to Walk-algo. It has the same limitation (of not working well after applying SW)
+
+<br/></li><li id='TSIACAj3w6Z' class=''>The intuition behind using Panaroma algorithm/unwrapping algorithm/walk algorithm 2.0 etc. is when finding out the domain of protein A we take an optimal range of domain of protein B but for the original walk algorithm to find out the domain of protein A we consider only one value into account for protein B. 
+
+<br/></li></ul></div><h1 id='TSIACAiVV1T'>8. Conclusion</h1>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAakziE'><li id='TSIACAyFIF8' class='' value='1'>We obtained the latest domain-domain interaction-pair lists from 3Did
+
+<br/></li><li id='TSIACA8jlIc' class=''>We obtained the PIPE results for the above pairs
+
+<br/></li><li id='TSIACAAK54d' class='parent'>Tuned the existing Walk Algo on PIPE
+
+<br/></li><ul><li id='TSIACAqXFrA' class=''>predicts the binding sites for PPI
+
+<br/></li></ul><li id='TSIACArGxZm' class=''>We obtained the SW-PIPE results for the above pairs
+
+<br/></li><li id='TSIACAZKnPg' class='parent'>Ran the Walk algo on SW-PIPE
+
+<br/></li><ul><li id='TSIACAB2B4S' class=''>predicts the binding sites for PPI
+
+<br/></li><li id='TSIACAk1ixL' class=''>Works bad
+
+<br/></li></ul><li id='TSIACAZgVB4' class='parent'>Introduced Panoramic View approach
+
+<br/></li><ul><li id='TSIACAbPEoo' class=''>Inspired from Walk algo
+
+<br/></li><li id='TSIACAyswgB' class=''>Works good on PIPE
+
+<br/></li><li id='TSIACAGKIx3' class=''>Doesn’t work good on SW-PIPE
+
+<br/></li></ul><li id='TSIACAh1etT' class='parent'>Introduced Bright Spot Detection approach
+
+<br/></li><ul><li id='TSIACADroCS' class=''>Uses convolution layers and pooling layers 
+
+<br/></li><li id='TSIACAwuTwU' class=''>Detects binding sites for PIP as bright spots 
+
+<br/></li><li id='TSIACAYQ2Qa' class=''>Works good on PIPE
+
+<br/></li><li id='TSIACA2EKka' class=''>Works really good on SW-PIPE
+
+<br/></li></ul><li id='TSIACA4hdEG' class=''><b>SENSITIVITY</b> <del>calculations concludes that Bright Spot Detection for SW-PIPE comes out to be the best </del>
+
+<br/></li></ul></div><br/>
+
+<h1 id='TSIACASzTv5'>9. Future Work</h1>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAnqVHc'><li id='TSIACAeuB2V' class='' value='1'><del>Calculate specificity</del>
+
+<br/></li><li id='TSIACAC8WVw' class=''><del>Calculate accuracy</del>
+
+<br/></li><li id='TSIACA91PH5' class=''><del>plot ROC curve for various approaches</del>
+
+<br/></li><li id='TSIACA3kV0d' class=''><del>Calculate precision</del>
+
+<br/></li><li id='TSIACAcqW1o' class=''><del>Calculate f1-score</del>
+
+<br/></li><li id='TSIACA2EWTP' class=''><del>plot precision-recall curve for various approaches</del>
+
+<br/></li></ul></div><h1 id='TSIACAYXYrs'>10. Suggestions and Feedback</h1>
+
+Feedback received on <control data-remapped="true" id="TSIACAXyMAB">Friday, September 4</control><br/>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAN6p6K'><li id='TSIACArTBIW' class='' value='1'>what are the "Panoramic view (Approach1) and the other is Bright-Spot Detection(approach 2)" and how do they work?
+
+<br/></li><li id='TSIACApGTcj' class=''>What performance metrics are you using? You mention "distance" below, which I assume is the metric used in the original PIPE-Sites paper. You later mention Sn/Sp/P-R, etc. For these latter metrics, I wonder how they apply to your problem, since your problem is more akin to object segmentation rather than binary classification. Therefore, metrics such as intersection-over-union may be more appropriate.
+
+<br/></li><li id='TSIACAoMwUY' class=''>The results in section 6 look promising. I'd like to see distributions rather than a 4-bin histogram. This could be captured nicely in a box plot, for example. I'd like to see results for different algorithms (PIPE vs. PIPE-SW; walk algo vs. new algos; different hyperparameter values; etc). 
+
+<br/></li><li id='TSIACAk7BdU' class=''>You'll eventually have to perform tests for statistical significance of differences, so you can start working on that too (e.g. t-test).
+
+<br/></li></ul></div><h1 id='TSIACAfwq8b'><control data-remapped="true" id="TSIACAGBppJ">Monday, September 14</control></h1>
+
+<h1 id='TSIACAd4LTS'>11. Algorithms Details</h1>
+
+<h2 id='TSIACAsdlxE'>11.1. Walk</h2>
+
+<pre id='TSIACA2LxNG'>00. Procedure get_binding_sites(H, proteinA, proteinB, alpha):<br>01.     A &lt;- len(proteinA) - 20<br>02.     B &lt;- len(proteinB) - 20<br>            (here H is 2-D-landscape-array ranging from <br>            H[0][0](left,lower) to H[A][B](right,upper) <br>            For simplicity, we are representing H[x][y] as graphical format)<br>03.     peak_hits &lt;- maximum(H)    <br>04.     if (peak_hits == 0):<br>05.         return (-1, -1) (-1, -1)<br>                (meaning sites could not be found, <br>                because previous attempts (site-1 or site-2) have exhausted the entire landscape)<br>06.     (x,y) &lt;- get_indices_of_peak_of_H<br>07.     up, down &lt;- y<br>08.     right, left &lt;- x<br>09.     while (up &lt; B &amp;&amp; H[x][up] &gt; alph*peak_hits):<br>10.         up &lt;- up + 1<br>11.     while (down &gt; 0 and H[x][down] &gt; alph*peak_hits):<br>12.         down &lt;- down - 1<br>13.     while (right &lt; A and H[right][y] &gt; alph*peak_hits):<br>14.         right &lt;- right + 1<br>15.     while (left &gt; 0 and H[left][y] &gt; alph*peak_hits):<br>16.         left &lt;- left - 1<br>15.     return (left, right) (down, up)<br></pre>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAHyxCw'><li id='TSIACAzbQIg' class='' value='1'>Find out the maximum point (lets call it THE hill)
+
+<br/></li><li id='TSIACAtM0fe' class=''>set a threshold (x% of height of THE hill)
+
+<br/></li><li id='TSIACAEHi2p' class=''>walk in UP direction from THE hill till we reach the threshold or boundary (whichever comes first)
+
+<br/></li><li id='TSIACArHPy7' class=''>walk in DOWN direction from THE hill till we reach the threshold or boundary (whichever comes first)
+
+<br/></li><li id='TSIACA9sqGP' class=''>walk in LEFT direction from THE hill till we reach the threshold or boundary (whichever comes first)
+
+<br/></li><li id='TSIACATTs1g' class=''>walk in RIGHT direction from THE hill till we reach the threshold or boundary (whichever comes first)
+
+<br/></li><li id='TSIACAPQkVl' class=''>return the box with boundary wall as LEFT,UP,RIGHT,DOWN 
+
+<br/></li></ul></div><h2 id='TSIACAW71Ui'>11.2. Panorama</h2>
+
+<h3 id='TSIACAOMXXR'><b>Helper functions</b></h3>
+
+<pre id='TSIACA2DHgI'>00. Procedure get_max_area(peak_hits, up, down, left, right):<br>01.     return peak_hits * (right-left+1) * (up-down+1)<br><br>02. Procedure get_upper_bar(H, up, down, left, right):<br>03.     bar &lt;- 0<br>04.     for (x &lt;- left to right):<br>05.         bar &lt;- bar + H[x][up+1] <br>06.     return bar<br><br>07. Procedure get_lower_bar(H, up, down, left, right):<br>08.     bar &lt;- 0<br>09.     for (x &lt;- left to right):<br>10.         bar &lt;- bar + H[x][down-1] <br>11.     return bar<br><br>12. Procedure get_right_bar(H, up, down, left, right):<br>13.     bar &lt;- 0<br>14.     for (y &lt;- down to up):<br>15.         bar &lt;- bar + H[right+1][y] <br>16.     return bar<br><br>17. Procedure get_left_bar(H, up, down, left, right):<br>18.     bar &lt;- 0<br>19.     for (y &lt;- down to up):<br>20.         bar &lt;- bar + H[left-1][y] <br>21.     return bar</pre>
+
+<h3 id='TSIACAdoBJW'><b>main function</b></h3>
+
+<pre id='TSIACAztY60'>00. Procedure get_binding_sites(H, proteinA, proteinB, beta):<br>01.     A &lt;- len(proteinA) - 20<br>02.     B &lt;- len(proteinB) - 20<br>            ( here H is 2-D-landscape-array ranging from <br>              H[0][0](left,lower) to H[A][B](right,upper) <br>              For simplicity, we are representing H[x][y] as graphical format )<br>03.     peak_hits &lt;- maximum(H)    <br>04.     if (peak_hits == 0):<br>05.         return (-1, -1) (-1, -1)<br>                (meaning sites could not be found, <br>                because previous attempts (site-1 or site-2) have exhausted the entire landscape)<br>06.     (x,y) &lt;- get_indices_of_peak_of_H<br>07.     up, down &lt;- y<br>08.     right, left &lt;- x<br>09.     curr_area &lt;- peak_hits<br>10.     max_area  &lt;- get_max_area(peak_hits, up, down, left, right)<br>11.     while ( (curr_area &gt; beta*max_area) &amp;&amp; <br>                (up    &lt; B) &amp;&amp; <br>                (down  &gt; 0) &amp;&amp;<br>                (right &lt; A) &amp;&amp;<br>                (left  &gt; 0)<br>              ):<br>12.         upper_bar &lt;- get_upper_bar(H, up, down, left, right)<br>13.         lower_bar &lt;- get_lower_bar(H, up, down, left, right)<br>14.         right_bar &lt;- get_right_bar(H, up, down, left, right)<br>15.         left_bar  &lt;- get_left_bar(H, up, down, left, right)<br>16.         maximum_bar &lt;- max(upper_bar, lower_bar, left_bar, right_bar)<br>17.         if   (upper_bar == maximum_bar):<br>18.             up++ <br>19.         elif (lower_bar == maximum_bar):<br>20.             low-- <br>21.         elif (right_bar == maximum_bar):<br>22.             right++<br>23.         else<br>24.             left--             <br>25.         curr_area &lt;- curr_area + maximum_bar<br>26.         max_area  &lt;- get_max_area(peak_hits, up, down, left, right)<br>27.     for (x &lt;- left to right):<br>28.         for (x &lt;- down to up):<br>29.             H[x][y] &lt;- 0<br>                    (cleaning H values so that next time this site is excluded from calculations)<br>30.     return (left, right) (down, up)<br></pre>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACADVe1D'><li id='TSIACAQr6Sj' class='' value='1'>Find out the maximum point (lets call it THE hill)
+
+<br/></li><li id='TSIACAEXkEV' class=''>treat this point as a unit rectangle (square in this case)
+
+<br/></li><li id='TSIACAnAgNd' class='parent'>for this rectangle, calculate the following
+
+<br/></li><ul><li id='TSIACAwgICz' class='parent'>upper bar
+
+<br/></li><ul><li id='TSIACA6jHEj' class=''>the next ‘strip’ on the upper side of this rectangle
+
+<br/></li></ul><li id='TSIACA2XUIx' class='parent'>lower bar
+
+<br/></li><ul><li id='TSIACAEtj6e' class=''>the next ‘strip’ on the lower side of this rectangle
+
+<br/></li></ul><li id='TSIACARGdfV' class='parent'>left bar
+
+<br/></li><ul><li id='TSIACArV1lN' class=''>the next ‘strip’ on the left side of this rectangle
+
+<br/></li></ul><li id='TSIACAJZfZW' class='parent'>right bar
+
+<br/></li><ul><li id='TSIACAiJ1u1' class=''>the next ‘strip’ on the right side of this rectangle
+
+<br/></li></ul></ul><li id='TSIACAZry8k' class=''>pick the maximum bar (out of these four) and add this bar in the current rectangle
+
+<br/></li><li id='TSIACANKC7k' class=''>stop if the size/area of this rectangle is below threshold (x% of maximum possible size/area)
+
+<br/></li><li id='TSIACAhpGYV' class=''>return this rectangle
+
+<br/></li></ul></div><h2 id='TSIACALX3BO'>11.3. Bright_Spot</h2>
+
+<h3 id='TSIACAbwBvy'><b>helper functions</b></h3>
+
+<pre id='TSIACAnyGVX'>def find_top_3_connected_patches(Img, connection_size):<br>    01. create graph from pixels of Img where each pixel can be connected to <br>            a) maximum four neighbouring pixels (up, down, left, right) and<br>            b) connection is only valid if the value of the neighbour is '1'<br>    02. this creates isolated 'islands' of connected graphs for the given Img<br>    03. reverse-sort these 'islands' by their size<br>            (size here means total number of connected pixels/nodes)<br>    04. filter and remove any 'island' &lt; 'connection_size'<br>    05. return bounding_rectangle (defined below) for top 3 'islands'<br><br>def bounding_rectangle(points):<br>    01. finds minimum enclosing rectangle for given set of 2-d points<br>    02. let <br>            a) (x,y) is coordiante of lower,left corner of this rectangle<br>            b) w is width of this rectangle<br>            c)h is height of this rectangle<br>    03. return (x, x+w) (y, y+h)</pre>
+
+<h3 id='TSIACAc1GYC'><b>main function</b></h3>
+
+<pre id='TSIACAcY68n'>00. def get_bright_spots(H, proteinA, proteinB, gamma):<br>02.     A &lt;- len(proteinA) - 20<br>03.     B &lt;- len(proteinB) - 20<br>04.     H &lt;- H/maximum(H)<br>05.         ( normalizing the image )<br><br>06.     blurr_conv_filter_size &lt;- (A/2, B/2)<br>07.     Blr &lt;- cv2.GaussianBlur(H, blurr_conv_filter_size)<br>    <br>08.     t &lt;- np.percentile(Blr, gamma)<br>09.     threshold_conv_filter_size &lt;- (1,1)<br>10.     Thr &lt;- cv2.threshold(Blr, t, threshold_conv_filter_size)<br>    <br>11.     connection_size &lt;- min(A,B)/2<br>12.     return find_top_3_connected_patches(Thr, connection_size)</pre>
+
+<div style="" class="" data-section-style='6'><ul id='TSIACA48eSa'><li id='TSIACAJiXVC' class='' value='1'><b>Transformation: </b>Turn the image to grayscale (by normalize it to have values ranging between 0 to 1)
+
+<br/></li><li id='TSIACAAkoo4' class=''><b>Convolution-Layer:</b> apply the gaussian convolution (to blur the image)
+
+<br/></li><li id='TSIACAmnFaW' class=''><b>Apply-Threshold: </b>set the pixel value to 1 iff it crosses threshold or else set 0
+
+<br/></li><li id='TSIACAviOwT' class='parent'><b>*Pooling:</b> Find the <b>top 3</b> largest connected components (referred as ‘islands’ in the above algorithm detail)
+
+<br/></li><ul><li id='TSIACAmCq4W' class='parent'>a pixel is considered connected to another pixel if 
+
+<br/></li><ul><li id='TSIACAG0nRB' class=''>both have values = 1
+
+<br/></li><li id='TSIACAXrcWT' class=''>you can reach from one to another by a single movement of either UP or DPWN or LRFT or RIGHT
+
+<br/></li></ul></ul><li id='TSIACAO3ZrX' class=''><b>Minimum-Enclosing-Rectangle</b>: Return the minimum closing rectangle (of the above 3 component)
+
+<br/></li></ul></div><h1 id='TSIACANKcIj'>12. Performance metrics : What exactly is DM</h1>
+
+Definition: Along every protein, the distance is the maximum difference between start and end positions. At the point when the anticipated site/PIPE predicted site is contained inside the lab site, the differences are both negative and we clip the maximum difference at 0 (perfect match). Distances along every protein are scaled and consolidated vectorially to yield the DM.<br/>
+
+<br/>
+
+<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/baUNhUMmCbw-UF2yXbmx4w?a=uPFrzkPTcLgZtWOwNkovsmflsRtaGh97Cwra1BpYo7ga' id='TSIACAiqn7B' alt=''></img></div><br/>
+
+<br/>
+
+<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/A_46x_FsAqUn8PJCl02tvg?a=WoFnNhonyCfVvPjO8ycaar5HUP7CI4yhYGi83aTramUa' id='TSIACApivml' alt=''></img></div><br/>
+
+<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/jlcC6DPszAFsA_-Rj9Kifg?a=a5RGAPBs2rEsPhdRpe75JzTCBcVElvplC0IX658ZJ1Ua' id='TSIACA9WY3j' alt=''></img></div><br/>
+
+<br/>
+
+<h2 id='TSIACAI0JqS'>12.1. walk (on original landscapes)</h2>
+
+Below graph strongly suggests that best performing parameter = <code>0.3</code><br/>
+
+<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/0-ZIHxsv_d6tL39TkuKtVA?a=6yFkWbGo5rm3CEndY0zmLJ1StwX2VGSS2kyarSbRt9ka' id='TSIACAThdOc' alt='' width='800' height='454'></img></div><h2 id='TSIACAHBfcg'>12.2. panorama (on original landscapes)</h2>
+
+Below graph strongly suggests that best performing parameter = <code>0.3</code><br/>
+
+<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/OtMgMcrYPguJti0rfkbZ_w?a=ZFMD0QYpQwdsmdtuJd6R3uqtVhiItsL80IkEEHDaTg0a' id='TSIACAjPU7o' alt='' width='800' height='454'></img></div><h2 id='TSIACA2UvNB'>12.3. bright_spot (on original landscapes)</h2>
+
+Below graph strongly suggests that best performing parameter = <code>0.6</code><br/>
+
+<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/_HAiHn4FZHtbCrjBmKSgeQ?a=proNjPz7tXTdTMNUoRYcMh2maxaD8gen5Cyv2XUzLxwa' id='TSIACA94BF6' alt='' width='800' height='454'></img></div><h2 id='TSIACA8wHTL'>12.4. SW-walk (a.k.a. walk on original landscapes)</h2>
+
+This shows that there is not much difference  with changing params for Walk algorithm on Sim-Weighted landscapes. Possible explanation is that Sim-Weighted landscapes does not have as much ‘contrasts’ as normal/original landscapes and hence Walk algorithm does not perform good (even with varying param) on Sim-Weighted landscapes.<br/>
+
+<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/QBTNjeSdrA4BPfjJk6dcuA?a=UxMLqrKaVJeTzrKKZ0RQ10tT9cLe9vq5cqS2SnLnD6Ia' id='TSIACAtNgxr' alt='' width='800' height='454'></img></div><h2 id='TSIACAWv6KF'>12.5. SW-bright_spot (a.k.a. walk on original landscapes)</h2>
+
+Below graph strongly suggests that best performing parameter = <code>0.6</code><br/>
+
+<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/9qg_qxKzOvyDP8PS5HAafw?a=tP5dVCdBtcwnG7AAPKFouLz1D9ouBIiZwxsTRkQDMgoa' id='TSIACAFmm8u' alt='' width='800' height='454'></img></div><h1 id='TSIACAXMofi'>13. Summarizing the Parameter Tuning for various Algo/Approaches </h1>
+
+<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/WVDIZ86SX6pKukx1PefLPA?a=YTXnUsOoLPajnTFjTjhXy5oZYgigdZx25pb59wMjMY0a' id='TSIACAfz2tE' alt='' width='800' height='455'></img></div><div style="" class="" data-section-style='5'><ul id='TSIACAbQl9w'><li id='TSIACAvG9Fb' class='' value='1'>walk on original-landscapes performs best at parameter = <code>0.3</code>
+
+<br/></li><li id='TSIACAcr0Tw' class=''>panorama on original-landscapes performs best at parameter = <code>0.3</code>
+
+<br/></li><li id='TSIACA99Gjx' class=''>bright_spot on original-landscapes performs best at parameter = <code>0.6</code>
+
+<br/></li><li id='TSIACAI61U3' class=''>walk on SW-landscapes performs equally bad irrespective of param 
+
+<br/></li><li id='TSIACA3h7PB' class=''>bright_spot on SW-landscapes performs best at parameter = <code>0.6</code>
+
+<br/></li></ul></div><h2 id='TSIACAmFc0o'>13.1. This is how the distribution looks like when we compare best of all the methods/models with each other</h2>
+
+<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/6jA-xw4Ec1KpbY9szO1N_w?a=KNSQfa3N4yrVV76aRdR9zKe2wMqKtTKzDncYBru2g1wa' id='TSIACAPC7EF' alt='' width='800' height='455'></img></div><br/>
+
+This ‘suggests’ the below order of performance <br/>
+
+<div style="" class="" data-section-style='6'><ul id='TSIACA8QU5V'><li id='TSIACAD5Nki' class='' value='1'>bright_spot on SW-landscapes              <b>(best)</b>
+
+<br/></li><li id='TSIACAKLqr7' class=''>bright_spot on original-landscapes
+
+<br/></li><li id='TSIACAQI3HG' class=''>walk on original-landscapes
+
+<br/></li><li id='TSIACAWNV7b' class=''>panorama on original-landscapes
+
+<br/></li><li id='TSIACAV2GPf' class=''>walk on SW-landscapes                          <b>(worst)</b>
+
+<br/></li></ul></div><h1 id='TSIACAQmyYi'>14. Another Performance metrics : What exactly is JI (or JD)</h1>
+
+Definition: Jaccard Index / Intersection-over-union is the area of overlap between the predicted site and the ground truth divided by the area of union between the predicted site and the ground truth.<br/>
+
+<pre id='TSIACAdh4Cj'>JI = Intersection / Union</pre>
+
+Jaccard Index is used to represents how close/similar are two segments. Since the other measure we are using (DM) is giving us the distance (or dis-similarity) between two segments, we introduced the term Jaccard Distance (JD). <br/>
+
+<pre id='TSIACAqRTnd'>JD = 1 - JI</pre>
+
+By doing this we can compare JD to DM since both now represent dissimilarity between predicted-binding-sites and lab-found-binding-sites<br/>
+
+<h2 id='TSIACAxs4Yz'>14.1. Why did we pick DM over JI (or JD)</h2>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAlD6ID'><li id='TSIACAizZJI' class='' value='1'>As the prediction site moves further away to actual site, JI value suddenly drops to ZERO (or JD becomes ONE) beyond the point where there is no intersection. 
+
+<br/></li><li id='TSIACAF9eOc' class=''>However, DM value gradually decreases as the predication site moves away from the actual interaction site (lab-site). 
+
+<br/></li><li id='TSIACAl6pjI' class=''>Hence JI (or JD) does not help in capturing how close are the predictions specially in cases when there is no intersection at all, making it a very strict measuring criteria than DM
+
+<br/></li></ul></div><h2 id='TSIACABGuyg'>14.2. comparison of JD Vs DM</h2>
+
+We can clearly see in the below distribution (comparison of JD Vs DM) for <b>best-param of each algorithm</b><br/>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACAYcC3w'><ul><li id='TSIACA3yYNY' class='' value='1'>note that the pipe-sites-prediction-results are exactly same, only the way to measure, is changed from DM to JD
+
+<br/></li></ul></ul></div><div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/k9qv_YsX_Zc70ROfzdFheA?a=o9wUTdU5G1Q2b2eYRkGtXMKUqdQ8SC8hlOfp5pkhVmIa' id='TSIACA1ucmO' alt='' width='800' height='454'></img></div><br/>
+
+<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/fokyP5bhByAK6fV-07R3BQ?a=lG9qaYYTa5giaN2m55YB72gAT05SIiHdrpcQ7pf9dBUa' id='TSIACAZmPx0' alt='' width='800' height='455'></img></div>These two graphs are showing the exact same thing (but from two prospectives) which is: <br/>
+
+<div style="" class="" data-section-style='5'><ul id='TSIACA84Lbh'><ul><li id='TSIACAgiieB' class='' value='1'>JD is highly skewed where as DM is not, but both draw the same conclusion that bright_spot in SW has the best results (lowest median and least spread inter-quartile range)
+
+<br/></li></ul></ul></div><h3 id='TSIACAIJabe'>14.3. JD across various Params</h3>
+
+Here is the summarized version of how various param tuning would have looked like if measured by JD<br/>
+
+<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/nbOl8rexlGupJpXhZWLmUA?a=upGDzaP3AjOppXDFutIMA7oq47JEiNxQIaFm6MrBH90a' id='TSIACAxqJ5m' alt='' width='800' height='455'></img></div>Clearly the absolute distribution of JD does not looks ‘very good’ ( highly skewed-to-1) but the comparison amongst the various approaches here, also ‘suggests’ the below order of performance <br/>
+
+<div style="" class="" data-section-style='6'><ul id='TSIACAtmtKe'><li id='TSIACA28OLD' class='' value='1'>bright_spot on SW-landscapes              <b>(best)</b>
+
+<br/></li><li id='TSIACA69yyF' class=''>bright_spot on original-landscapes
+
+<br/></li><li id='TSIACAPEnbK' class=''>walk on original-landscapes
+
+<br/></li><li id='TSIACA8VGfA' class=''>panorama on original-landscapes
+
+<br/></li><li id='TSIACAlMTB5' class=''>walk on SW-landscapes                          <b>(worst)</b>
+
+<br/></li></ul></div><br/>
+
+<br/>
+
+<br/>
+
+<h1 id='TSIACAboXl0'>15. Tests for statistical significance of differences</h1>
+
+<h2 id='TSIACAzCsaO'>Coming soon......</h2>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+</body></html>
