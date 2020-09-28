@@ -1,0 +1,624 @@
+<!doctype html>
+<html><head><title>Getting data</title><meta charset="UTF-8"><link href="http://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700,700italic|Roboto:400,700,700italic,400italic" rel="stylesheet" type="text/css"><style>/*
+ * Copyright 2014 Quip
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may obtain
+ * a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ */
+
+body {
+    font-size: 15px;
+    color: #333;
+    background: white;
+    padding: 60px 95px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern";
+    font-kerning: normal;
+    -moz-font-feature-settings: "kern";
+    -webkit-font-feature-settings: "kern";
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+th {
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    margin: 0;
+    margin-top: 1.25em;
+    margin-bottom: 0.75em;
+}
+
+h1 {
+    font-size: 35px;
+    line-height: 42px;
+}
+
+h1:first-child {
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 18px;
+    line-height: 22px;
+}
+
+h3 {
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.capitalize-h3 h3 {
+    text-transform: uppercase;
+}
+
+/* Body text */
+body,
+p,
+ul,
+ol,
+td {
+    font-family: "Crimson Text", serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+blockquote,
+q {
+    display: block;
+    margin: 1em 0;
+    font-style: italic;
+}
+
+blockquote a,
+q a {
+    text-decoration: underline;
+}
+
+blockquote {
+    padding-left: 10px;
+    border-left: 4px solid #a6a6a6;
+}
+
+q {
+    color: #a6a6a6;
+    line-height: 40px;
+    font-size: 24px;
+    text-align: center;
+    quotes: none;
+}
+
+q a {
+    color: #a6a6a6;
+}
+
+code,
+pre {
+    font-family: Consolas, "Liberation Mono", Menlo, "Courier Prime Web",
+        Courier, monospace;
+    background: #f2f2f2;
+}
+
+code {
+    padding: 1px;
+    margin: 0 -1px;
+    border-radius: 3px;
+}
+
+pre {
+    display: block;
+    line-height: 20px;
+    text-shadow: 0 1px white;
+    padding: 5px 5px 5px 30px;
+    white-space: nowrap;
+    position: relative;
+    margin: 1em 0;
+}
+
+pre:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15px;
+    border-left: solid 1px #dadada;
+}
+
+/* Lists */
+div[data-section-style="5"],
+div[data-section-style="6"],
+div[data-section-style="7"] {
+    margin: 12px 0;
+}
+
+ul {
+    padding: 0 0 0 40px;
+}
+
+ul li {
+    margin-bottom: 0.4em;
+}
+
+/* Bulleted list */
+div[data-section-style="5"] ul {
+    list-style-type: disc;
+}
+div[data-section-style="5"] ul ul {
+    list-style-type: circle;
+}
+div[data-section-style="5"] ul ul ul {
+    list-style-type: square;
+}
+div[data-section-style="5"] ul ul ul ul {
+    list-style-type: disc;
+}
+div[data-section-style="5"] ul ul ul ul ul {
+    list-style-type: circle;
+}
+div[data-section-style="5"] ul ul ul ul ul ul {
+    list-style-type: square;
+}
+
+/* Numbered list */
+div[data-section-style="6"] ul {
+    list-style-type: decimal;
+}
+div[data-section-style="6"] ul ul {
+    list-style-type: lower-alpha;
+}
+div[data-section-style="6"] ul ul ul {
+    list-style-type: lower-roman;
+}
+div[data-section-style="6"] ul ul ul ul {
+    list-style-type: decimal;
+}
+div[data-section-style="6"] ul ul ul ul ul {
+    list-style-type: lower-alpha;
+}
+div[data-section-style="6"] ul ul ul ul ul ul {
+    list-style-type: lower-roman;
+}
+
+/* Checklist */
+div[data-section-style="7"] ul {
+    list-style-type: none;
+}
+
+div[data-section-style="7"] ul li:before {
+    content: "\2610";
+    position: absolute;
+    display: inline;
+    margin-right: 1.2em;
+    margin-left: -1.2em;
+}
+
+div[data-section-style="7"] ul li.parent:before {
+    content: "";
+}
+
+div[data-section-style="7"] ul li.checked {
+    text-decoration: line-through;
+}
+
+div[data-section-style="7"] ul li.checked:before {
+    content: "\2611";
+    text-decoration: none;
+}
+
+/* Tables */
+div[data-section-style="8"] {
+    margin: 12px 0;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: separate;
+    border: solid 1px #bbb;
+    table-layout: fixed;
+    position: relative;
+}
+
+table th,
+table td {
+    padding: 2px 2px 0;
+    min-width: 1.5em;
+    word-wrap: break-word;
+}
+
+table th {
+    border-bottom: 1px solid #c7cbd1;
+    background: #f2f2f2;
+    font-weight: bold;
+    vertical-align: bottom;
+    color: #3a4449;
+    text-align: center;
+}
+
+table td {
+    padding-top: 0;
+    border-left: 1px solid #c7cbd1;
+    border-top: 1px solid #c7cbd1;
+    vertical-align: top;
+}
+
+table td.bold {
+    font-weight: bold;
+}
+
+table td.italic {
+    font-style: italic;
+}
+
+table td.underline {
+    text-decoration: underline;
+}
+
+table td.strikethrough {
+    text-decoration: line-through;
+}
+
+table td.underline.strikethrough {
+    text-decoration: underline line-through;
+}
+
+table td:first-child {
+    border-left: hidden;
+}
+
+table tr:first-child td {
+    border-top: hidden;
+}
+
+/* Images */
+div[data-section-style="11"] {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div[data-section-style="11"][data-section-float="0"] {
+    clear: both;
+    text-align: center;
+}
+
+div[data-section-style="11"][data-section-float="1"] {
+    float: left;
+    clear: left;
+    margin-right: 20px;
+}
+
+div[data-section-style="11"][data-section-float="2"] {
+    float: right;
+    clear: right;
+    margin-left: 20px;
+}
+
+div[data-section-style="11"] img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+div[data-section-style="11"].show-border {
+    outline: 1px solid @standardShadowColor;
+    box-shadow: 0 1px 4px 0 @secondaryShadowColor;
+}
+
+hr {
+    width: 70px;
+    margin: 20px auto;
+}
+
+/* Apps */
+div[data-section-style="19"].placeholder {
+    margin: 0.8em auto;
+    padding: 4px 0;
+    display: block;
+    color: #3d87f5;
+    text-align: center;
+    border: 1px solid rgba(41, 182, 242, 0.2);
+    border-radius: 3px;
+    background: #e9f8fe;
+    font-family: Roboto, sans-serif;
+}
+
+div[data-section-style="19"].first-party-element {
+    margin-bottom: 10px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+div[data-section-style="19"].first-party-element.kanban {
+    background-image: url("https://quip-cdn.com/nK0hSyhsb4jrLIL2s5Ma-g");
+    height: 166px;
+}
+
+div[data-section-style="19"].first-party-element.calendar {
+    background-image: url("https://quip-cdn.com/OYujqLny03RILxcLIiyERg");
+    height: 244px;
+}
+
+div[data-section-style="19"].first-party-element.poll {
+    background-image: url("https://quip-cdn.com/fbIiFrcKGv__4NB7CBfxoA");
+    height: 116px;
+}
+
+div[data-section-style="19"].first-party-element.countdown {
+    background-image: url("https://quip-cdn.com/3bPhykD2dBei9sSjCWteTQ");
+    height: 96px;
+}
+
+div[data-section-style="19"].first-party-element.process_bar {
+    background-image: url("https://quip-cdn.com/ybQlHnHEIIBLog5rZmYs_w");
+    height: 36px;
+}
+
+div[data-section-style="19"].first-party-element.project_tracker {
+    background-image: url("https://quip-cdn.com/OFQU087b4Mxzz1ZaHwtjXA");
+    height: 164px;
+}
+
+div[data-section-style="19"] img {
+    margin: 0.5em;
+}
+
+div[data-section-style="19"] img.masked-image {
+    margin: 0;
+    transform-origin: top left;
+}
+
+div[data-section-style="19"] .image-mask {
+    position: relative;
+    overflow: hidden;
+}
+/*
+ * Copyright 2019 Quip
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may obtain
+ * a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ */
+
+body {
+    counter-reset: indent0 indent1 indent2 indent3 indent4 indent5 indent6
+        indent7 indent8;
+}
+
+/* Numbered list */
+div[data-section-style="6"] {
+    counter-reset: indent0 indent1 indent2 indent3 indent4 indent5 indent6
+        indent7 indent8;
+}
+div[data-section-style="6"].list-numbering-continue {
+    counter-reset: none;
+}
+div[data-section-style="6"].list-numbering-restart-at {
+    counter-reset: indent0 var(--indent0) indent1 indent2 indent3 indent4
+        indent5 indent6 indent7 indent8;
+}
+div[data-section-style="6"] ul {
+    /* indent0 is not reset since it is shared across the div elements */
+    list-style-type: none !important;
+}
+div[data-section-style="6"] ul ul {
+    counter-reset: indent1;
+}
+div[data-section-style="6"] ul ul ul {
+    counter-reset: indent2;
+}
+div[data-section-style="6"] ul ul ul ul {
+    counter-reset: indent3;
+}
+div[data-section-style="6"] ul ul ul ul ul {
+    counter-reset: indent4;
+}
+div[data-section-style="6"] ul ul ul ul ul ul {
+    counter-reset: indent5;
+}
+div[data-section-style="6"] ul li {
+    counter-increment: indent0;
+}
+div[data-section-style="6"] ul ul li {
+    counter-increment: indent1;
+}
+div[data-section-style="6"] ul ul ul li {
+    counter-increment: indent2;
+}
+div[data-section-style="6"] ul ul ul ul li {
+    counter-increment: indent3;
+}
+div[data-section-style="6"] ul ul ul ul ul li {
+    counter-increment: indent4;
+}
+div[data-section-style="6"] ul ul ul ul ul ul li {
+    counter-increment: indent5;
+}
+div[data-section-style="6"] ul li:before {
+    content: counter(indent0, decimal) ". ";
+}
+div[data-section-style="6"] ul ul li:before {
+    content: counter(indent1, lower-alpha) ". ";
+}
+div[data-section-style="6"] ul ul ul li:before {
+    content: counter(indent2, lower-roman) ". ";
+}
+div[data-section-style="6"] ul ul ul ul li:before {
+    content: counter(indent3, decimal) ". ";
+}
+div[data-section-style="6"] ul ul ul ul ul li:before {
+    content: counter(indent4, lower-alpha) ". ";
+}
+div[data-section-style="6"] ul ul ul ul ul ul li:before {
+    content: counter(indent5, lower-roman) ". ";
+}
+</style></head><body><h1 id='eVHACAohWFQ'>Getting data</h1>
+
+<h3 id='eVHACAIlDfe'>Installing on AWS</h3>
+
+<pre id='eVHACALRktQ'>wget https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh<br>bash ~/Anaconda3-2020.07-Linux-x86_64.sh<br># conda create --name py3_7 python=3.7<br># conda activate py3_7<br><code>conda install </code><code>-</code><code>c conda</code><code>-</code><code>forge jupyterlab </code><code># </code><code>-</code><code>p </code><code>~</code><code>/anaconda3/</code><code>envs/py3_7</code><br><code>conda install </code><code>-</code><code>c anaconda pandas </code><code># -p ~/anaconda3/envs/py3_7</code><br><code>pip install pandarallel</code><br><code>pip install untangle</code><br><br># <code>conda activate py3_7</code><br># jupyter-lab --no-browser --port=8899<br>jupyter-lab --no-browser --port=8899 --ip='*' --NotebookApp.token='' --NotebookApp.password='' <br><br></pre>
+
+<h3 id='eVHACAGsUlR'>Running from Mac</h3>
+
+<pre id='eVHACA4zghh'># on mac<br>ssh -N -Y -L localhost:8888:localhost:8899 pcluster-master-beta</pre>
+
+<h1 id='eVHACApOUEE'><br>Run Python files</h1>
+
+<div class="" data-section-style='5' style=""><ul id='eVHACALFgRN'><li id='eVHACAEQbsM' class='parent' value='1'>Inputs :
+
+<br/></li><ul><li id='eVHACA75nQD' class=''><code>Accessing_3did/3did_flat</code>
+
+<br/></li><li id='eVHACAlvSUe' class='parent'><code>ProteinFiles/protein_list.txt</code> 
+
+<br/></li><ul><li id='eVHACAPCcgP' class=''>20236
+
+<br/></li></ul></ul></ul></div><h2 id='eVHACAC23i8'>1. Get most recent Domain pairs (human)</h2>
+
+Read most updated <code>3did_flat</code> file <br/>
+
+<div class="" data-section-style='5' style=""><ul id='eVHACANZl3Z'><li id='eVHACAlMDHw' class='' value='1'>script :  <code>Accessing_3did/formatFlatFile.py</code>
+
+<br/></li><li id='eVHACALoDWM' class='parent'>Input : <code>Accessing_3did/3did_flat</code>
+
+<br/></li><ul><li id='eVHACAfQkgQ' class=''>
+
+<br/></li></ul><li id='eVHACAjD9xz' class='parent'>Output : <code>ProteinFiles/interactingDomainPairs.txt</code>  
+
+<br/></li><ul><li id='eVHACAjk9s7' class=''>(~15 K from from ~10K ==&gt; 50% more data)
+
+<br/></li><li id='eVHACAWDU4x' class=''>PF10417 PF10417<br>PF10417 PF00578<br>PF10417 PF02195<br>PF10417 PF00085<br>PF12574 PF12574<br>...<br>...
+
+<br/></li></ul><li id='eVHACAiFxa7' class='parent'>How to run
+
+<br/></li><ul><li id='eVHACAL83tn' class=''># comment print statement in Accessing_3did/formatFlatFile.py <br>cd $LOCAL_PIPE_aishp<br>python Accessing_3did/formatFlatFile.py 
+
+<br/></li></ul></ul></div><h2 id='eVHACAnu8dg'>2. Get recent Domains found for Protein sequences (human)</h2>
+
+<h3 id='eVHACARWHL0'>2.1. get latest Protein file to this code</h3>
+
+get 20236 Human protein sequences (BioGrid / mp-pipe/data)<br/>
+
+<div class="" data-section-style='5' style=""><ul id='eVHACAAKZA2'><ul><li id='eVHACAylZu6' class='' value='1'>cp \<br>$SSHFS_PIPE/data/organism/data/protein_sequences.txt_full \<br>$LOCAL_PIPE_aishp/ProteinFiles/protein_list.txt<br>
+
+<br/></li></ul></ul></div><h3 id='eVHACA8PuNi'><br>2.2. Get  proteins with domain for this list</h3>
+
+<div class="" data-section-style='5' style=""><ul id='eVHACAm1hwY'><li id='eVHACAbp4sS' class='parent' value='1'>script : <code>FetchPfam/main_parallel.py</code>
+
+<br/></li><ul><li id='eVHACASArN5' class=''>takes 0.5 seconds per protein, per CPU
+
+<br/></li><li id='eVHACAchKbG' class='parent'>hence we need <code>main_parallel.py</code> 
+
+<br/></li><ul><li id='eVHACAayhhm' class=''>(96 CPUs on AWS, m4.24xlarge 96 CPU, 4GB memory per CPU)
+
+<br/></li></ul></ul><li id='eVHACAq06Ee' class='parent'>Input : <code>ProteinFiles/protein_list.txt</code> (20236 sequences)
+
+<br/></li><ul><li id='eVHACAQtkwl' class=''>A0A024RCH0  MEKPYNKNEGNLENEGKPEDEVEPDDEGKSDEEEKPDAEGKTECEGKRKAEGEPGDEGQLEDKGSQEKQGKSEGEGKPQGEGKPASQAKPEGQPRAAEKRPAGDYVPRKAKRKTDRGTDDSPKDSQEDLQERHLSSEEMMRECGDVSRAQEELRKKQKMGGFHWMQRDVQDPFAQGDNGVSGE<br>A0A075B762 MVVSAGPWSSEKAEMNILEINETLRPQLAEKKQQFRSLKEKCFLTQLAGFLANRQKKYKYEECKDLIKFMLRNERQFKEEKLAEQLKQAEELRQYKVLVHSQERELTQLREKLREGRDASRSLYEHLQALLTPDEPDKSQGQDLQEQLAEGCRLAQHLVQKLSPENDEDEDEDVQVEEAEKVLESSAPREVQKAEESKVPEDSLEECAITCSNSHGPCDSNQPHKNIKITFEEDEVNSTLVVDRESSHDECQDALNILPVPGPTSSATNVSMVVSAGPLSSEKAEMNILEINEKLRPQLAEKKQQFRNLKEKCFLTQLSGFLANQQKKYKYEECKDLIKFMLRNERQFKEEKLAEQLKQAEELRQYKVLVHAQERELTQLKEKLREGRDASRSLNEHLQALLTPYEPDKSQGQDLQEQLAEGCRLAQHLVQKLSPENDNDDDEDVQVEVAEKVQKSSAPREMQKAEEKEVPEDSLEECAITYSNSHGSYDSNQPHRKTKITFEEDKVDSTLIGSSSHVEWEDAVHIIPENESDDEEEEEKGPVSPRNLQESEEEEVPQESWDEGYSTLSIPPEMLASYQSYSSTFHSLEEQQVCMAVDIGRHRWDQVKKEDQEATGPRLSRELLDEKGPEVLQDSQDRCYSTPSGCLELTDSCQPYRSAFYILEQQRVGLAIDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQRVGFAFDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDEEEEEDQDPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEENHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLEEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQRVGFAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDEEEEEDQDPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLEEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQRVGFAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDEEEEEDQDPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQHVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQHVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQHVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQHVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDQEEEEDQDPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQHVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQHVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELTDSCQPYRSAFYVLEQQHVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDEEEEEDQDPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGYLELTDSCQPYRSAFYVLEQQHVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYGSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLSRELLDEKGPEVLQDSLDRCYSTPSGCLELCDSCQPYRSAFYVLEQQRVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLDEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYSSAVYSLEEQYLGLALDVDKIEKKGKGKKRRGRRSKKERRRGRKEGEEDQNPPCPRLNGVLMEVEEREVLQDSLDRCYSTPSMYFELPDSFQHYRSVFYSFEEQHISFALYVDNRFFTLTVTSLHLVFQMGVIFPQ<br>A0A087WTN9 MAWWKSWIEQEGVTVKSSSHFNPDPDAETLYKAMKGIGVGSQLLSHQAAAFAFPSSALTSVSPWGQQGHLCCNPAGTNEQAIIDVLTKRSNTQRQQIAKSFKAQFGKDLTETLKSELSGKFERLIVALMYPPYRYEAKELHDAMKGLGTKEGVIIEILASRTKNQLREIMKAYEEDYGSSLEEDIQADTSGYLERILVCLLQGSRDDVSSFVDPGLALQDAQDLYAAGEKIRGTDEMKFITILCTRSATHLLRVFEEYEKIANKSIEDSIKSETHGSLEEAMLTVVKCTQNLHSYFAERLYYAMKGAGTRDGTLIRNIVSRSEIDLNLIKCHFKKMYGKTLSSMIMEDTSGDYKNALLSLVGSDP<br>A0A087WU62 MAAPIPQGFSCLSRFLGWWSRQPVLVTQSAAIVPVRTKKRFTPPIYQPKFKTEKEFMQHARKAGLVIPPEKSDRSIHLACTAGIFDAYVPPEGDARISSLSKEGLIERTERMKKTMASQVSIRRIKDYDANFKIKDFPEKAKDIFIEAHLCLNNSDHDRLHTLVTEHCFPTLAIYDRFGRLMYGQEDVPKDVLEYVVFEKQLTNPYGSWRMHTKIVPPWAPPKQPILKTVMIPGPQLKPEEEYEEAQGEAQKPQLA<br>A0A087WUF1 MVVSAGPWSSEKAEMNILEINEKLRPQLAENKQQFRNLKERCFLTQLAGFLANRQKKYKYEECKDLIKFMLRNERQFKEEKLAEQLKQAEELRQYKVLVHSQERELTQLREKLREGRDASRSLNEHLQALLTPDEPDKSQGQDLQEQLAEGCRLAQQLVQKLSPENDEDEDEDVQVEEDEKVLESSAPREVQKAEESKVPEDSLEECAITCSNSHGPCDSIQPHKNIKITFEEDKVNSTVVVDRKSSHDECQDALNILPVPGPTSSATNVSMVVSAGPLSSEKAEMNILEINEKLRPQLAEKKQQFRSLKEKCFVTQLAGFLAKQQNKYKYEECKDLIKSMLRNELQFKEEKLAEQLKQAEELRQYKVLVHSQERELTQLREKLREGRDASRSLNEHLQALLTPDEPDKSQGQDLQEQLAEGCRLAQHLVQKLSPENDEDEDEDVQVEEDEKVLESSSPREMQKAEESKVPEDSLEECAITCSNSHGPCDSNQPHKNIKITFEEDKVNSSLVVDRESSHDECQDALNILPVPGPTSSATNVSMVVSAGPLSSEKAEMNILEINEKLRPQLAEKKQQFRSLKEKCFVTQVACFLAKQQNKYKYEECKDLLKSMLRNELQFKEEKLAEQLKQAEELRQYKVLVHSQERELTQLREKLREGRDASRSLNEHLQALLTPDEPDKSQGQDLQEQLAEGCRLAQHLVQKLSPENDNDDDEDVQVEVAEKVQKSSSPREMQKAEEKEVPEDSLEECAITCSNSHGPYDSNQPHRKTKITFEEDKVDSTLIGSSSHVEWEDAVHIIPENESDDEEEEEKGPVSPRNLQESEEEEVPQESWDEGYSTLSIPPERLASYQSYSSTFHSLEEQQVCMAVDIGRHRWDQVKKEDQEATGPRLSRELLAEKEPEVLQDSLDRCYSTPSVYLGLTDSCQPYRSAFYVLEQQRVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLAEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYRSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYRSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKKRRRGRKEGEEDQNPPCPRLSRELLAEKEPEVLQDSLDRWYSTPSVYLGLTDPCQPYRSAFYVLEQQRVGLAVDMDEIEKYQEVEEDQDPSCPRLSRELLAEKEPEVLQDSLDRCYSTPSGYLELPDLGQPYRSAVYSLEEQYLGLALDVDRIKKDQEEEEDQGPPCPRLSRELLEVVEPEVLQDSLDRCYSTPSSCLEQPDSCQPYRSSFYALEEKHVGFSLDVGEIEKKGKGKKRRGRRSKKKRRRGRKEGEEDQNPPCPRLNSVLMEVEEPEVLQDSLDRCYSTPSMYFELPDSFQHYRSVFYSFEEQHITFALDMDNSFFTLTVTSLHLVFQMGVIFPQ<br>...<br>...
+
+<br/></li></ul><li id='eVHACAr0XeQ' class='parent'>Output : <code>ProteinFiles/ProteinPfam.txt</code> (domains present for all 20236 sequences)
+
+<br/></li><ul><li id='eVHACAXrhRj' class=''>A0A024RCH0 PF04538<br>A0A075B762 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758<br>A0A087WTN9 PF00191 PF00191 PF00191 PF00191<br>A0A087WU62 PF04280<br>A0A087WUF1 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758 PF06758<br>...<br>...
+
+<br/></li></ul><li id='eVHACAY4bq6' class=''>How to run (takes 2-3 minutes, earlier was taking 20236/2 seconds ~ 3 hrs
+
+<br/></li></ul></div><pre id='eVHACAipmUv'># add this in pfamConnect function in getPfam.py<br>    try :<br>        for i in range(0, len(xml.pfam.entry.matches.match)):<br>            pfam.append(xml.pfam.entry.matches.match[i]['accession'])<br>    except :<br>        try:<br>            pfam.append(xml.pfam.entry.matches.match['accession'])<br>        except :<br>            # skip the protein for which entry not found in pfam <br>            # http://pfam.xfam.org/protein/A0A024RCH0?output=xml<br>            pfam.append(' ')<br><br># FetchPfam/main_parallel.py <br>from getPfam import pfamConnect as getPfam<br><br>import math<br>import pickle<br>import pandas as pd<br>import multiprocessing as mp<br>from multiprocessing import Pool<br><br>outputFile = 'ProteinFiles/ProteinPfam.txt'<br>inputFile = 'ProteinFiles/protein_list.txt'<br><br>def updatedGetPfam(protein):<br>    return protein + ' ' + ' '.join(getPfam(protein))<br><br>print("prcoessing parallel")<br>df = pd.read_csv(inputFile, header=None, delim_whitespace=True )<br><br>...<br>...<br>...<br><br>print("writing finished")</pre>
+
+<pre id='eVHACA7OuAE'>cd $LOCAL_PIPE_aishp<br># (base) (Mon Aug 10 13:17:04) &lt;2&gt; [/nfs/workspace/aishp-PIPE]<br>python FetchPfam/main_parallel.py<br># (base) (Mon Aug 10 13:18:27) &lt;0&gt; [/nfs/workspace/aishp-PIPE]</pre>
+
+<h2 id='eVHACAkIWQZ'>3. Generate multi/single/no domain</h2>
+
+<h3 id='eVHACATVb72'>3.3. Upload new known interacting Protein pairs to this code</h3>
+
+<div class="" data-section-style='5' style=""><ul id='eVHACAC0p2S'><li id='eVHACAY1oZ7' class='' value='1'>66084 Human protein_pairs
+
+<br/></li></ul></div><pre id='eVHACAIRuoZ'>cp \<br>$SSHFS_PIPE/data/organism/data/protein_pairs.txt_full \<br>$LOCAL_PIPE_aishp/ProteinFiles/protein_pairs.txt</pre>
+
+<h3 id='eVHACAJkg69'>Run :<code> InteractionLists/main.py</code></h3>
+
+<div class="" data-section-style='5' style=""><ul id='eVHACAlEgtr'><li id='eVHACAPHyGG' class='parent' value='1'>Input: 
+
+<br/></li><ul><li id='eVHACA7hETA' class=''><code>ProteinFiles/interactingDomainPairs.txt</code>
+
+<br/></li><li id='eVHACAM9ZuJ' class=''><code>ProteinFiles/ProteinPfam.txt</code>
+
+<br/></li><li id='eVHACA51KPT' class=''><code>protein_pairs</code> (66084 for human)
+
+<br/></li></ul><li id='eVHACA3luPG' class='parent'>outputs are:
+
+<br/></li><ul><li id='eVHACA3UmoE' class='parent'><code>InteractionLists/singleDomain.txt</code> (2532 pairs)
+
+<br/></li><ul><li id='eVHACABxbM7' class=''>ProteinA ProteinB DomainA DomainB<br>O00139 O00139 PF00225 PF00225<br>O00204 O00204 PF00685 PF00685<br>O00268 O00268 PF07531 PF07531<br>...<br>...
+
+<br/></li></ul><li id='eVHACAu5ufN' class='parent'><code>InteractionLists/noDomain.txt</code> (58231 pairs)
+
+<br/></li><ul><li id='eVHACAP2IWN' class=''>A0AVI4 A0AVI4<br>A0MZ66 A0MZ66<br>A8K8P3 A8K8P3<br>O00161 O00161<br>...<br>...
+
+<br/></li></ul><li id='eVHACAby7SR' class='parent'><code>InteractionLists/multiDomain.txt</code>  (5322 pairs)
+
+<br/></li><ul><li id='eVHACAKrqFD' class=''>A6NLU0 A6NLU0<br>O00141 O00141<br>O00148 O00148<br>O00180 O00180<br>...<br>...
+
+<br/></li></ul></ul><li id='eVHACATjWtY' class=''>How to run
+
+<br/></li></ul></div><pre id='eVHACArW5GV'>cd $LOCAL_PIPE_aishp<br>python InteractionLists/main.py </pre>
+
+<h2 id='eVHACAbNlXe'>4. Get the domain details for single domain interaction</h2>
+
+<div class="" data-section-style='5' style=""><ul id='eVHACAuVdnU'><li id='eVHACAqdIV7' class='' value='1'>script : <code>InteractionLists/stats/domainLength-parallel.py</code>
+
+<br/></li><li id='eVHACAZ350Q' class=''>Input : <code>InteractionLists/singleDomain.txt</code> (2532 pair)
+
+<br/></li><li id='eVHACA3IMd9' class='parent'>Output : <code>ProteinFiles/length.txt</code> (3324 pairs)
+
+<br/></li><ul><li id='eVHACAbqU1L' class=''>Protein Domain ProteinLength DomainLength DomainStart DomainEnd<br>Q13263 PF00628 835 45 627 672<br>P42226 PF01017 847 107 161 268<br>Q9NYK1 PF01582 1049 158 890 1048<br>...<br>...
+
+<br/></li></ul><li id='eVHACAjWHJ5' class=''>How to run :
+
+<br/></li></ul></div><pre id='eVHACAvkZKA'># InteractionLists/stats/domainLength-parallel.py<br><br>import untangle<br>import collections<br>import pandas as pd<br>import pickle<br>import math<br>import multiprocessing as mp<br>from multiprocessing import Pool<br>import json<br><br>....<br>....<br>....<br><br>inputFile = 'InteractionLists/singleDomain.txt'<br>outputFile = 'ProteinFiles/length.txt'<br>notFoundFile = outputFile + '_notfound'<br><br>df = pd.read_csv(inputFile, delim_whitespace=True)<br><br>....<br>....<br>....<br><br>print("writing finished")</pre>
+
+<h3 id='eVHACA01zcV'>4.2. Run <code>InteractionLists/stats/stats.py</code></h3>
+
+Inputs are:<br/>
+
+<div class="" data-section-style='5' style=""><ul id='eVHACAwsQa8'><li id='eVHACAM3ysR' class='' value='1'><code>InteractionLists/singleDomain.txt</code>
+
+<br/></li><li id='eVHACAhxVb1' class=''><code>ProteinFiles/length.txt</code>
+
+<br/></li></ul></div>outputs are:<br/>
+
+<div class="" data-section-style='5' style=""><ul id='eVHACAXchGH'><li id='eVHACAKFLsJ' class='' value='1'><code>InteractionLists/stats/Proteins.png</code>
+
+<br/></li><li id='eVHACADGGv0' class=''><code>InteractionLists/stats/Domains.png</code>
+
+<br/></li><li id='eVHACAojhIi' class=''><code>InteractionLists/stats/DomainLength.png</code>
+
+<br/></li><li id='eVHACAnwF4L' class=''><code>InteractionLists/stats/DomainLengthPercent.png</code>
+
+<br/></li><li id='eVHACALrTsu' class=''><code>InteractionLists/stats/stats.log</code>
+
+<br/></li></ul></div>change value of bins to generate for different bins<br/>
+
+<h2 id='eVHACAhDDEM'>5. Run DM values</h2>
+
+Run DM values (for various algorithms)<br/>
+
+</body></html>
