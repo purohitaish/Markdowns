@@ -477,11 +477,11 @@ div[data-section-style="6"] ul ul ul ul ul ul li:before {
 
 <h1 id='TSIACAI6WoA'>1. Running PIPE on Protein-Dataset (homo sapiens)</h1>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAVK4LE'><li id='TSIACATMO6E' class='parent' value='1'>Latest Homo sapiens protein sequences from <b>Uniprot</b>
+<div data-section-style='5' style="" class=""><ul id='TSIACAVK4LE'><li id='TSIACATMO6E' class='parent' value='1'>Latest Homo sapiens protein sequences from <b>Uniprot</b>
 
 <br/></li><ul><li id='TSIACA9NI3v' class=''>20236
 
-<br/></li></ul></ul></div><div style="" class="" data-section-style='5'><ul id='TSIACAMoxF7'><li id='TSIACAlX5d0' class='parent' value='1'>protein-pairs (only physical interactions) from <b>BioGrid</b>
+<br/></li></ul></ul></div><div data-section-style='5' style="" class=""><ul id='TSIACAMoxF7'><li id='TSIACAlX5d0' class='parent' value='1'>protein-pairs (only physical interactions) from <b>BioGrid</b>
 
 <br/></li><ul><li id='TSIACAR8Avu' class=''>66084
 
@@ -491,7 +491,7 @@ div[data-section-style="6"] ul ul ul ul ul ul li:before {
 
 A <code>simProt</code> file for a protein sequence represents all interactions of this protein to all other proteins. This is directly loaded in memory while calculating the landscape to significantly reduce the run time of pipe for each input-pair<br/>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAftNob'><li id='TSIACAqMstS' class='parent' value='1'><b>lab/Graham:</b> 8 CPUs (with 4GB memory each CPUs in Graham and 2GB memory each CPUs in lab)
+<div data-section-style='5' style="" class=""><ul id='TSIACAftNob'><li id='TSIACAqMstS' class='parent' value='1'><b>lab/Graham:</b> 8 CPUs (with 4GB memory each CPUs in Graham and 2GB memory each CPUs in lab)
 
 <br/></li><ul><li id='TSIACAGXOXT' class=''>~16 hrs runtime (almost same for lab/Graham)
 
@@ -505,7 +505,7 @@ A <code>simProt</code> file for a protein sequence represents all interactions o
 
 Once the <code> simProt </code> files are generated, we run the pipe algo to generate landscapes for each input pair<br/>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAQLJgQ'><li id='TSIACA3GMoo' class='parent' value='1'><b>lab/Graham:</b>  8 CPUs
+<div data-section-style='5' style="" class=""><ul id='TSIACAQLJgQ'><li id='TSIACA3GMoo' class='parent' value='1'><b>lab/Graham:</b>  8 CPUs
 
 <br/></li><ul><li id='TSIACAzVNz5' class=''>~30 minutes
 
@@ -519,7 +519,7 @@ Once the <code> simProt </code> files are generated, we run the pipe algo to g
 
 Running walk algo to predict top-3 binding sites.<br/>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACA4YatJ'><li id='TSIACABWQMp' class='' value='1'><b>input :</b> landscape for all input pairs
+<div data-section-style='5' style="" class=""><ul id='TSIACA4YatJ'><li id='TSIACABWQMp' class='' value='1'><b>input :</b> landscape for all input pairs
 
 <br/></li><li id='TSIACAazniI' class=''><b>output :</b> combining top-3 sites results for all input pairs in one file -<code> human.out </code>
 
@@ -547,39 +547,7 @@ This represents landscape values right after SW normalization. In summary we can
 
 (this is element wise division, rather than a matrix operation)<br/>
 
-<br/>
-
-<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/myn9r02ymsXqbkm8ZysarA?a=oDa1jNSsPwH157TibFvnOaz4aHkdstjbWZwVcUs5rxoa' id='TSIACAEEDHC' alt=''></img></div>X-axis : O14713<br/>
-
-Y-axis : O00522<br/>
-
-Z-axis : hits (original-landscape)<br/>
-
-<br/>
-
-<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/UW6Xbnzc82npc1yKaNlU6g?a=98atc2LuRlLPoOkpa7KVQ9gOAL7sHvxeEl9l1LC52yEa' id='TSIACANuHyf' alt=''></img></div>X-axis : O14713<br/>
-
-Y-axis : O00522<br/>
-
-Z-axis : norm-factor<br/>
-
-<br/>
-
-<br/>
-
-<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/-V1U-IvaDKfChCa0F5lKBQ?a=a12I9Ii6y2LGjUaKJyefC54hFr6vPHW2RMsTtH9IZLwa' id='TSIACAEgtq7' alt=''></img></div>X-axis : O14713<br/>
-
-Y-axis : O00522<br/>
-
-Z-axis : Sim-Weighted landscape<br/>
-
-<br/>
-
-<br/>
-
-<br/>
-
-<div style="" class="" data-section-style='5'><ul id='TSIACATNYmg'><ul><ul><ul><li id='TSIACA4wgL3' class='' value='1'>One example (using <code>.mat </code>files)
+<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/-vDykXGhnd6c4tHNMJLHrA?a=xSNqdnNNsekgJfYjAsfe71jXcpGq8F7VvsAobsNZSIIa' id='TSIACAwIXwN' alt='' width='800' height='739'></img></div><div data-section-style='5' style="" class=""><ul id='TSIACATNYmg'><ul><ul><ul><li id='TSIACA4wgL3' class='' value='1'>One example (using <code>.mat </code>files)
 
 <br/></li></ul></ul></ul></ul></div><br/>
 
@@ -589,9 +557,9 @@ Z-axis : Sim-Weighted landscape<br/>
 
 <br/>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAQVih6'><ul><ul><ul><li id='TSIACANQ3aO' class='' value='1'>one example of what is the value of norm_factor for each pixel
+<div data-section-style='5' style="" class=""><ul id='TSIACAQVih6'><ul><ul><ul><li id='TSIACANQ3aO' class='' value='1'>one example of what is the value of norm_factor for each pixel
 
-<br/></li></ul></ul></ul></ul></div><div style="" class="" data-section-style='5'><ul id='TSIACAptgHm'><ul><ul><ul><li id='TSIACAG26xH' class='' value='1'>one example of SW-landscape
+<br/></li></ul></ul></ul></ul></div><div data-section-style='5' style="" class=""><ul id='TSIACAptgHm'><ul><ul><ul><li id='TSIACAG26xH' class='' value='1'>one example of SW-landscape
 
 <br/></li></ul></ul></ul></ul></div><h2 id='TSIACAvz7gH'>2.2. Understanding Similarity-Weighted (SW) through heat maps</h2>
 
@@ -621,7 +589,7 @@ A sample looks like this:<br/>
 
 <br/>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAcfjgi'><li id='TSIACAV3ziI' class='' value='1'>DM1: DM value for first-binding-site
+<div data-section-style='5' style="" class=""><ul id='TSIACAcfjgi'><li id='TSIACAV3ziI' class='' value='1'>DM1: DM value for first-binding-site
 
 <br/></li><li id='TSIACARp11u' class=''>DM_MIN: The best of the three binding sites
 
@@ -727,7 +695,7 @@ A sample looks like this:<br/>
 
 <pre id='TSIACAisibe'>00. Procedure get_binding_sites(H, proteinA, proteinB, alpha):<br>01.     A &lt;- len(proteinA) - 20<br>02.     B &lt;- len(proteinB) - 20<br>            (here H is 2-D-landscape-array ranging from <br>            H[0][0](left,lower) to H[A][B](right,upper) <br>            For simplicity, we are representing H[x][y] as graphical format)<br>03.     peak_hits &lt;- maximum(H)    <br>04.     if (peak_hits == 0):<br>05.         return (-1, -1) (-1, -1)<br>                (meaning sites could not be found, <br>                because previous attempts (site-1 or site-2) have exhausted the entire landscape)<br>06.     (x,y) &lt;- get_indices_of_peak_of_H<br>07.     up, down &lt;- y<br>08.     right, left &lt;- x<br>09.     while (up &lt; B &amp;&amp; H[x][up] &gt; alph*peak_hits):<br>10.         up &lt;- up + 1<br>11.     while (down &gt; 0 and H[x][down] &gt; alph*peak_hits):<br>12.         down &lt;- down - 1<br>13.     while (right &lt; A and H[right][y] &gt; alph*peak_hits):<br>14.         right &lt;- right + 1<br>15.     while (left &gt; 0 and H[left][y] &gt; alph*peak_hits):<br>16.         left &lt;- left - 1<br>15.     return (left, right) (down, up)<br></pre>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACADMeWs'><li id='TSIACAy1QYE' class='' value='1'>Find out the maximum point (lets call it THE hill)
+<div data-section-style='5' style="" class=""><ul id='TSIACADMeWs'><li id='TSIACAy1QYE' class='' value='1'>Find out the maximum point (lets call it THE hill)
 
 <br/></li><li id='TSIACA3pjWB' class=''>set a threshold (x% of height of THE hill)
 
@@ -751,7 +719,7 @@ A sample looks like this:<br/>
 
 <pre id='TSIACAePvqs'>00. Procedure get_binding_sites(H, proteinA, proteinB, beta):<br>01.     A &lt;- len(proteinA) - 20<br>02.     B &lt;- len(proteinB) - 20<br>            ( here H is 2-D-landscape-array ranging from <br>              H[0][0](left,lower) to H[A][B](right,upper) <br>              For simplicity, we are representing H[x][y] as graphical format )<br>03.     peak_hits &lt;- maximum(H)    <br>04.     if (peak_hits == 0):<br>05.         return (-1, -1) (-1, -1)<br>                (meaning sites could not be found, <br>                because previous attempts (site-1 or site-2) have exhausted the entire landscape)<br>06.     (x,y) &lt;- get_indices_of_peak_of_H<br>07.     up, down &lt;- y<br>08.     right, left &lt;- x<br>09.     curr_area &lt;- peak_hits<br>10.     max_area  &lt;- get_max_area(peak_hits, up, down, left, right)<br>11.     while ( (curr_area &gt; beta*max_area) &amp;&amp; <br>                (up    &lt; B) &amp;&amp; <br>                (down  &gt; 0) &amp;&amp;<br>                (right &lt; A) &amp;&amp;<br>                (left  &gt; 0)<br>              ):<br>12.         upper_bar &lt;- get_upper_bar(H, up, down, left, right)<br>13.         lower_bar &lt;- get_lower_bar(H, up, down, left, right)<br>14.         right_bar &lt;- get_right_bar(H, up, down, left, right)<br>15.         left_bar  &lt;- get_left_bar(H, up, down, left, right)<br>16.         maximum_bar &lt;- max(upper_bar, lower_bar, left_bar, right_bar)<br>17.         if   (upper_bar == maximum_bar):<br>18.             up++ <br>19.         elif (lower_bar == maximum_bar):<br>20.             low-- <br>21.         elif (right_bar == maximum_bar):<br>22.             right++<br>23.         else<br>24.             left--             <br>25.         curr_area &lt;- curr_area + maximum_bar<br>26.         max_area  &lt;- get_max_area(peak_hits, up, down, left, right)<br>27.     for (x &lt;- left to right):<br>28.         for (x &lt;- down to up):<br>29.             H[x][y] &lt;- 0<br>                    (cleaning H values so that next time this site is excluded from calculations)<br>30.     return (left, right) (down, up)<br></pre>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAgZPRJ'><li id='TSIACA2a994' class='' value='1'>Find out the maximum point (lets call it THE hill)
+<div data-section-style='5' style="" class=""><ul id='TSIACAgZPRJ'><li id='TSIACA2a994' class='' value='1'>Find out the maximum point (lets call it THE hill)
 
 <br/></li><li id='TSIACATKNHX' class=''>treat this point as a unit rectangle (square in this case)
 
@@ -811,7 +779,7 @@ For the calculations in below sections, we are measuring effectiveness of the di
 
 <h2 id='TSIACARbhDr'>5.1. Approach-1 (ORIGINAL ALGORITHM) : PIPE-WALK</h2>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAQ0WPs'><li id='TSIACA0pMzt' class='' value='1'>This approach is Walk algorithm applies on landscapes (<b>NOT on Sim-weighted landscapes (SW-landscapes) </b>)
+<div data-section-style='5' style="" class=""><ul id='TSIACAQ0WPs'><li id='TSIACA0pMzt' class='' value='1'>This approach is Walk algorithm applies on landscapes (<b>NOT on Sim-weighted landscapes (SW-landscapes) </b>)
 
 <br/></li><li id='TSIACABrY6V' class=''>Overhead view with site/range from validation dataset(lab) and PIPE predicted sites/ranges
 
@@ -819,7 +787,7 @@ For the calculations in below sections, we are measuring effectiveness of the di
 
 <h2 id='TSIACAdpWvc'>5.2. Approach-2 : Panoramic View</h2>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACA9P2KN'><li id='TSIACAE5e9V' class='' value='1'>a.k.a <b>Aerial view</b> a.k.a G<b>ift unwrapping</b>
+<div data-section-style='5' style="" class=""><ul id='TSIACA9P2KN'><li id='TSIACAE5e9V' class='' value='1'>a.k.a <b>Aerial view</b> a.k.a G<b>ift unwrapping</b>
 
 <br/></li><li id='TSIACA3OBrQ' class=''>This is a different algorithm from the original walk algorithm (applied on landscapes, <b>NOT on SW-landscapes</b>)
 
@@ -829,7 +797,7 @@ For the calculations in below sections, we are measuring effectiveness of the di
 
 <h2 id='TSIACAlzFLA'>5.3. Approach 3: BRIGHT-SPOT-DETECTION</h2>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACALgpWe'><li id='TSIACA5sYKa' class='' value='1'>This is also different algorithm from the original walk algorithm
+<div data-section-style='5' style="" class=""><ul id='TSIACALgpWe'><li id='TSIACA5sYKa' class='' value='1'>This is also different algorithm from the original walk algorithm
 
 <br/></li><li id='TSIACAsQ4nO' class=''>Overhead view with site/range from validation dataset(lab) and PIPE predicted sites/ranges
 
@@ -839,13 +807,13 @@ For the calculations in below sections, we are measuring effectiveness of the di
 
 <h2 id='TSIACAGfCkK'>5.4. PIPE-SW-WALK</h2>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAryE2V'><li id='TSIACA5GKc8' class='' value='1'>Overhead view with site/range from validation dataset(lab) and PIPE predicted sites/ranges
+<div data-section-style='5' style="" class=""><ul id='TSIACAryE2V'><li id='TSIACA5GKc8' class='' value='1'>Overhead view with site/range from validation dataset(lab) and PIPE predicted sites/ranges
 
 <br/></li></ul></div><div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/hMWHANQZsoagRsTgIsjU-A?a=bXLaM8TipVTsuGzIv22lkh21bAVMPBXN1AOHV1ei8t4a' id='TSIACACHNcp' alt=''></img></div><br/>
 
 <h2 id='TSIACA1Phqr'>5.5. PIPE-SW-SPOT-DETECT</h2>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAVV9Ol'><li id='TSIACArNstX' class='' value='1'>Overhead view with site/range from validation dataset(lab) and PIPE predicted sites/ranges
+<div data-section-style='5' style="" class=""><ul id='TSIACAVV9Ol'><li id='TSIACArNstX' class='' value='1'>Overhead view with site/range from validation dataset(lab) and PIPE predicted sites/ranges
 
 <br/></li></ul></div><div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/6Cx0pBTwS_lEtEKGxrNjJg?a=GqDhlOS6kCML8DN2ImywQChnvOpLazqiM4pfMHb97goa' id='TSIACAM09pr' alt=''></img></div><br/>
 
@@ -893,7 +861,7 @@ Below graph strongly suggests that best performing parameter = <code>0.6</code>
 
 <div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/9qg_qxKzOvyDP8PS5HAafw?a=tP5dVCdBtcwnG7AAPKFouLz1D9ouBIiZwxsTRkQDMgoa' id='TSIACAFmm8u' alt='' width='800' height='454'></img></div><h1 id='TSIACAXMofi'>7. Summarizing the Parameter Tuning for various Algorithms/Approaches </h1>
 
-<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/WVDIZ86SX6pKukx1PefLPA?a=YTXnUsOoLPajnTFjTjhXy5oZYgigdZx25pb59wMjMY0a' id='TSIACAfz2tE' alt='' width='800' height='455'></img></div><div style="" class="" data-section-style='5'><ul id='TSIACAbQl9w'><li id='TSIACAvG9Fb' class='' value='1'>walk on original-landscapes performs best at parameter = <code>0.3</code>
+<div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/WVDIZ86SX6pKukx1PefLPA?a=YTXnUsOoLPajnTFjTjhXy5oZYgigdZx25pb59wMjMY0a' id='TSIACAfz2tE' alt='' width='800' height='455'></img></div><div data-section-style='5' style="" class=""><ul id='TSIACAbQl9w'><li id='TSIACAvG9Fb' class='' value='1'>walk on original-landscapes performs best at parameter = <code>0.3</code>
 
 <br/></li><li id='TSIACAcr0Tw' class=''>panorama on original-landscapes performs best at parameter = <code>0.3</code>
 
@@ -935,7 +903,7 @@ By doing this we can compare JD to DM since both now represent dissimilarity bet
 
 <h2 id='TSIACAxs4Yz'>8.1. Why did we pick DM over JI (or JD)</h2>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAlD6ID'><li id='TSIACAizZJI' class='' value='1'>As the prediction site moves further away to actual site, JI value suddenly drops to ZERO (or JD becomes ONE) beyond the point where there is no intersection. 
+<div data-section-style='5' style="" class=""><ul id='TSIACAlD6ID'><li id='TSIACAizZJI' class='' value='1'>As the prediction site moves further away to actual site, JI value suddenly drops to ZERO (or JD becomes ONE) beyond the point where there is no intersection. 
 
 <br/></li><li id='TSIACAF9eOc' class=''>However, DM value gradually decreases as the predication site moves away from the actual interaction site (lab-site). 
 
@@ -945,13 +913,13 @@ By doing this we can compare JD to DM since both now represent dissimilarity bet
 
 We can clearly see in the below distribution (comparison of JD Vs DM) for <b>best-param of each algorithm</b><br/>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAYcC3w'><ul><li id='TSIACA3yYNY' class='' value='1'>note that the pipe-sites-prediction-results are exactly same, only the way to measure, is changed from DM to JD
+<div data-section-style='5' style="" class=""><ul id='TSIACAYcC3w'><ul><li id='TSIACA3yYNY' class='' value='1'>note that the pipe-sites-prediction-results are exactly same, only the way to measure, is changed from DM to JD
 
 <br/></li></ul></ul></div><div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/k9qv_YsX_Zc70ROfzdFheA?a=o9wUTdU5G1Q2b2eYRkGtXMKUqdQ8SC8hlOfp5pkhVmIa' id='TSIACA1ucmO' alt='' width='800' height='454'></img></div><br/>
 
 <div data-section-style='11' style='max-width:100%' class=''><img src='https://quip.com/blob/TSIAAAjycax/fokyP5bhByAK6fV-07R3BQ?a=lG9qaYYTa5giaN2m55YB72gAT05SIiHdrpcQ7pf9dBUa' id='TSIACAZmPx0' alt='' width='800' height='455'></img></div>These two graphs are showing the exact same thing (but from two prospectives) which is: <br/>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACA84Lbh'><ul><li id='TSIACAgiieB' class='' value='1'>JD is highly skewed where as DM is not, but both draw the same conclusion that bright_spot in SW has the best results (lowest median and least spread inter-quartile range)
+<div data-section-style='5' style="" class=""><ul id='TSIACA84Lbh'><ul><li id='TSIACAgiieB' class='' value='1'>JD is highly skewed where as DM is not, but both draw the same conclusion that bright_spot in SW has the best results (lowest median and least spread inter-quartile range)
 
 <br/></li></ul></ul></div><h3 id='TSIACAIJabe'>8.3. JD across various Params</h3>
 
@@ -985,7 +953,7 @@ Here is the summarized version of how various param tuning would have looked lik
 
 <span style="color:#726b60" textcolor="#726b60">The hypothesis being test is:</span><br/>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAgeddH'><li id='TSIACAzfcae' class='parent' value='1'><b>Null hypothesis (H<sub>0</sub>)</b>: u<sub>d</sub><span style="color:#726b60" textcolor="#726b60"> </span>= 0, which translates to the mean difference between sample 1 and sample 2 is equal to 0. 
+<div data-section-style='5' style="" class=""><ul id='TSIACAgeddH'><li id='TSIACAzfcae' class='parent' value='1'><b>Null hypothesis (H<sub>0</sub>)</b>: u<sub>d</sub><span style="color:#726b60" textcolor="#726b60"> </span>= 0, which translates to the mean difference between sample 1 and sample 2 is equal to 0. 
 
 <br/></li><ul><li id='TSIACAUShqG' class=''>In our case, mean difference between DM values of algorithm-1 and algorithm-2 is equal to 0. 
 
@@ -999,7 +967,7 @@ Here is the summarized version of how various param tuning would have looked lik
 
 <br/>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAOGeOu'><li id='TSIACAqcm2R' class='parent' value='1'>Here, t-value represents the difference between the two algorithms, specifically <code>algorithm_1 - algorithm_2</code> , hence :
+<div data-section-style='5' style="" class=""><ul id='TSIACAOGeOu'><li id='TSIACAqcm2R' class='parent' value='1'>Here, t-value represents the difference between the two algorithms, specifically <code>algorithm_1 - algorithm_2</code> , hence :
 
 <br/></li><ul><li id='TSIACAT4R7C' class=''>if t-value is negative then algorithm-1 has significant lower mean (meaning lower mean DM value) which suggests that it performs better
 
@@ -1011,7 +979,7 @@ Here is the summarized version of how various param tuning would have looked lik
 
 <span style="color:#726b60" textcolor="#726b60">In order for the paired sample t-test results to be trusted, the following assumptions need to be met:</span><br/>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAysQu6'><li id='TSIACAMWCqo' class='' value='1'>The dependent variable (DV) must be continuous which is measured on an interval or ratio scale
+<div data-section-style='5' style="" class=""><ul id='TSIACAysQu6'><li id='TSIACAMWCqo' class='' value='1'>The dependent variable (DV) must be continuous which is measured on an interval or ratio scale
 
 <br/></li><li id='TSIACAhI5Cc' class=''>The observations are independent
 
@@ -1309,7 +1277,7 @@ comparing how is is walk better (or worse) based on t_stats and p_value<br/>
 
 <span style="color:#726b60" textcolor="#726b60">The hypothesis being test is:</span><br/>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAVj9uV'><li id='TSIACAlzP1y' class='parent' value='1'><b>Null hypothesis (H<sub>0</sub>)</b>: The difference between the pairs follows a symmetric distribution.
+<div data-section-style='5' style="" class=""><ul id='TSIACAVj9uV'><li id='TSIACAlzP1y' class='parent' value='1'><b>Null hypothesis (H<sub>0</sub>)</b>: The difference between the pairs follows a symmetric distribution.
 
 <br/></li><ul><li id='TSIACAEusmM' class=''>In our case, DM values of algorithm-1 and algorithm-2 follows a symmetric distribution.
 
@@ -1327,7 +1295,7 @@ comparing how is is walk better (or worse) based on t_stats and p_value<br/>
 
 <span style="color:#726b60" textcolor="#726b60">In order for the Wilcoxon signed-rank test results to be trusted, the following assumptions need to be met:</span><br/>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACABGotn'><li id='TSIACAHUooe' class='' value='1'>The dependent variable (DV) must be continuous which is measured on an ordinal or continuous scale
+<div data-section-style='5' style="" class=""><ul id='TSIACABGotn'><li id='TSIACAHUooe' class='' value='1'>The dependent variable (DV) must be continuous which is measured on an ordinal or continuous scale
 
 <br/></li><li id='TSIACAR0mLf' class=''>The paired observations are randomly and independently drawn
 
@@ -1367,7 +1335,7 @@ comparing how is is walk better (or worse) based on t_stats and p_value<br/>
 
 <br/></td><td id='s:TSIACAouzUw;TSIACAgBmhZ' style='text-align: left;vertical-align: bottom;'>YES
 
-<br/></td></tr></tbody></table></div><div style="" class="" data-section-style='5'><ul id='TSIACA9PhSK'><li id='TSIACAuSZiG' class='parent' value='1'>above p_values confirms that walk algo is 
+<br/></td></tr></tbody></table></div><div data-section-style='5' style="" class=""><ul id='TSIACA9PhSK'><li id='TSIACAuSZiG' class='parent' value='1'>above p_values confirms that walk algo is 
 
 <br/></li><ul><li id='TSIACADxpVc' class=''>slightly different from panorama and 
 
@@ -1509,7 +1477,7 @@ These results affirms that results of paired t-test, even if the data is suppose
 
 <br/></td></tr></tbody></table></div><h1 id='TSIACAEFWx6'>10. Insights for Walk Vs Panoramic view and Walk Vs Bright-Spot Detection</h1>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACASneDm'><li id='TSIACAF6UuX' class='' value='1'>Walk algo works really good when there is a steep contrast in landscape-values (image)
+<div data-section-style='5' style="" class=""><ul id='TSIACASneDm'><li id='TSIACAF6UuX' class='' value='1'>Walk algo works really good when there is a steep contrast in landscape-values (image)
 
 <br/></li><li id='TSIACAR2ym9' class=''>Sim-Weighted normalizes the landscape-values (image) by a factor completely depending on the position/biding-site. This is not uniform for the entire image, meaning norm-factor is not a constant value for the image but for each pixel<code> i,j </code>its value is <code>simProt(i)*simProt(j)</code> This reduces the contrast of image overall reducing the performace/accuracy/TruePositiveRate of Walk-Algo
 
@@ -1519,7 +1487,7 @@ These results affirms that results of paired t-test, even if the data is suppose
 
 <br/></li></ul></div><h1 id='TSIACAiVV1T'>11. Conclusion</h1>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAakziE'><li id='TSIACAyFIF8' class='' value='1'>We obtained the latest domain-domain interaction-pair lists from 3Did
+<div data-section-style='5' style="" class=""><ul id='TSIACAakziE'><li id='TSIACAyFIF8' class='' value='1'>We obtained the latest domain-domain interaction-pair lists from 3Did
 
 <br/></li><li id='TSIACA8jlIc' class=''>We obtained the PIPE results for the above pairs
 
@@ -1557,7 +1525,7 @@ These results affirms that results of paired t-test, even if the data is suppose
 
 <h1 id='TSIACATGjkY'>Enrichment Calculation</h1>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAsmVru'><li id='TSIACAPzv7c' class='parent' value='1'>Using the exact similar approach as given in original PIPE-sites paper by calculating the similarities between 2 protein pairs i.e. for every protein pair if DM = 1 from the lab site then we are predicting worst interaction site but if the DM = 0 when comparing to lab site then that would be an ideal prediction. 
+<div data-section-style='5' style="" class=""><ul id='TSIACAsmVru'><li id='TSIACAPzv7c' class='parent' value='1'>Using the exact similar approach as given in original PIPE-sites paper by calculating the similarities between 2 protein pairs i.e. for every protein pair if DM = 1 from the lab site then we are predicting worst interaction site but if the DM = 0 when comparing to lab site then that would be an ideal prediction. 
 
 <br/></li><ul><li id='TSIACAgojJ6' class=''>Hence, we are using distribution of DM values representing enrichment as shown in these plots. 
 
@@ -1565,7 +1533,7 @@ These results affirms that results of paired t-test, even if the data is suppose
 
 <br/></li></ul></div><h2 id='TSIACAjvRQn'>PIPE-WALK </h2>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAJZVcA'><li id='TSIACA7W2v2' class='' value='1'>At different DM values (range 0.15-0.3), number of interacting pairs (out of ~2.5K protein pairs) for single domain proteins.
+<div data-section-style='5' style="" class=""><ul id='TSIACAJZVcA'><li id='TSIACA7W2v2' class='' value='1'>At different DM values (range 0.15-0.3), number of interacting pairs (out of ~2.5K protein pairs) for single domain proteins.
 
 <br/></li></ul></div><div data-section-style='13'><table id='TSIACAYOgqQ' title='Sheet22' style='width: 13.2667em'><thead><tr><th class='empty' style='width: 2em'/><th id='TSIACAZoWEU' class='empty' style='width: 7.26667em'>A<br/></th><th id='TSIACAoA5Mj' class='empty' style='width: 6em'>B<br/></th></tr></thead><tbody><tr id='TSIACAfVXzn'><td style='background-color:#f0f0f0'>1</td><td id='s:TSIACAfVXzn;TSIACAcWnp4' style='' class='bold'>DM values (&lt;=)
 
@@ -1593,7 +1561,7 @@ These results affirms that results of paired t-test, even if the data is suppose
 
 <h2 id='TSIACAMIbdB'>PIPE-PANORAMA </h2>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAXrg52'><li id='TSIACA9d0JS' class='' value='1'>At different DM values (range 0.15-0.3), number of interacting pairs (out of ~2.5k protein pairs) for single domain proteins.
+<div data-section-style='5' style="" class=""><ul id='TSIACAXrg52'><li id='TSIACA9d0JS' class='' value='1'>At different DM values (range 0.15-0.3), number of interacting pairs (out of ~2.5k protein pairs) for single domain proteins.
 
 <br/></li></ul></div><div data-section-style='13'><table id='TSIACAypEQZ' title='Sheet23' style='width: 13.6em'><thead><tr><th class='empty' style='width: 2em'/><th id='TSIACA9t3ET' class='empty' style='width: 7.6em'>A<br/></th><th id='TSIACAvwyif' class='empty' style='width: 6em'>B<br/></th></tr></thead><tbody><tr id='TSIACAwMwP2'><td style='background-color:#f0f0f0'>1</td><td id='s:TSIACAwMwP2;TSIACAHLVtm' style='' class='bold'>DM values (&lt;=)
 
@@ -1619,7 +1587,7 @@ These results affirms that results of paired t-test, even if the data is suppose
 
 <h2 id='TSIACA9XPdY'>PIPE-SPOT DETECTION</h2>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAPOQsK'><li id='TSIACA1Wiju' class='' value='1'>At different DM values (range 0.15-0.3), number of interacting pairs (out of ~2.5k protein pairs) for single domain proteins when applied bright spot detection method
+<div data-section-style='5' style="" class=""><ul id='TSIACAPOQsK'><li id='TSIACA1Wiju' class='' value='1'>At different DM values (range 0.15-0.3), number of interacting pairs (out of ~2.5k protein pairs) for single domain proteins when applied bright spot detection method
 
 <br/></li></ul></div><div data-section-style='13'><table id='TSIACA9Oybu' title='Sheet24' style='width: 13.4667em'><thead><tr><th class='empty' style='width: 2em'/><th id='TSIACAfRm3b' class='empty' style='width: 7.46667em'>A<br/></th><th id='TSIACAmqFCC' class='empty' style='width: 6em'>B<br/></th></tr></thead><tbody><tr id='TSIACAYPzFz'><td style='background-color:#f0f0f0'>1</td><td id='s:TSIACAYPzFz;TSIACAJ8E2o' style='' class='bold'>DM values (&lt;=)
 
@@ -1645,7 +1613,7 @@ These results affirms that results of paired t-test, even if the data is suppose
 
 <h2 id='TSIACA2DQ7Z'>PIPE-SW-WALK</h2>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACA4KcP6'><li id='TSIACAVqcJm' class='' value='1'>At different DM values (range 0.15-0.3), number of interacting pairs (out of ~2.5k protein pairs) for single domain proteins.
+<div data-section-style='5' style="" class=""><ul id='TSIACA4KcP6'><li id='TSIACAVqcJm' class='' value='1'>At different DM values (range 0.15-0.3), number of interacting pairs (out of ~2.5k protein pairs) for single domain proteins.
 
 <br/></li></ul></div><div data-section-style='13'><table id='TSIACAyf67S' title='Sheet25' style='width: 13.5333em'><thead><tr><th class='empty' style='width: 2em'/><th id='TSIACAVIYMp' class='empty' style='width: 7.53333em'>A<br/></th><th id='TSIACA9XFf2' class='empty' style='width: 6em'>B<br/></th></tr></thead><tbody><tr id='TSIACA2IJgI'><td style='background-color:#f0f0f0'>1</td><td id='s:TSIACA2IJgI;TSIACA2jDNu' style='' class='bold'>DM values (&lt;=)
 
@@ -1675,7 +1643,7 @@ These results affirms that results of paired t-test, even if the data is suppose
 
 <h2 id='TSIACAr8zRt'>PIPE-SW-SPOT DETECTION</h2>
 
-<div style="" class="" data-section-style='5'><ul id='TSIACAlGHuT'><li id='TSIACAJyKkr' class='' value='1'>At different DM values (range 0.15-0.3), number of interacting pairs (out of ~2.5k protein pairs) for single domain proteins.
+<div data-section-style='5' style="" class=""><ul id='TSIACAlGHuT'><li id='TSIACAJyKkr' class='' value='1'>At different DM values (range 0.15-0.3), number of interacting pairs (out of ~2.5k protein pairs) for single domain proteins.
 
 <br/></li></ul></div><div data-section-style='13'><table id='TSIACAmgZS4' title='Sheet26' style='width: 14.3333em'><thead><tr><th class='empty' style='width: 2em'/><th id='TSIACAS7es1' class='empty' style='width: 8.33333em'>A<br/></th><th id='TSIACAoK3pN' class='empty' style='width: 6em'>B<br/></th></tr></thead><tbody><tr id='TSIACAJWlHr'><td style='background-color:#f0f0f0'>1</td><td id='s:TSIACAJWlHr;TSIACA8EZGW' style='' class='bold'>DM values (&lt;=)
 
